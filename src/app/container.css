@@ -1,0 +1,11 @@
+/* Shared section container — enforces consistent horizontal padding and max-width across all sections */
+.section-container {
+  position: relative;
+  z-index: 10;
+  width: 100%;
+  max-width: 1280px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: clamp(1.5rem, 5vw, 4rem);
+  padding-right: clamp(1.5rem, 5vw, 4rem);
+}
