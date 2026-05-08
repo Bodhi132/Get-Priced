@@ -4,6 +4,7 @@ import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
 import { useRef, useState } from 'react';
 import { EASE_OUT } from '@/lib/easing';
 import { Mail, ArrowRight, Sparkles, CheckCircle2, ShieldCheck, Zap, Users } from 'lucide-react';
+import Link from 'next/link';
 
 const TOOLS = ['Cursor', 'Claude', 'ChatGPT', 'GitHub Copilot', 'Midjourney', 'Perplexity'];
 
@@ -106,13 +107,13 @@ export default function HeroSection() {
         animate={{ opacity: 1, x: 0 }}
         transition={{ delay: 1.2, duration: 0.8 }}
       >
-        <div className="bg-[#0a0b14]/60 backdrop-blur-xl rounded-3xl p-5 w-56 shadow-2xl shadow-black/50 border border-white/10">
+        <div className="bg-white/60 backdrop-blur-xl rounded-3xl p-5 w-56 shadow-2xl shadow-black/50 border border-black/10">
           <div className="flex items-center gap-3 mb-4">
             <div className="w-8 h-8 rounded-full bg-gradient-to-br from-amber-400 to-orange-500 flex items-center justify-center text-sm font-bold text-white shadow-lg shadow-orange-500/20">C</div>
-            <span className="text-sm font-medium text-gray-200">Cursor Pro</span>
+            <span className="text-sm font-medium text-gray-800">Cursor Pro</span>
           </div>
-          <div className="text-3xl font-bold text-white tracking-tight mb-1">$40<span className="text-sm text-gray-500 font-normal ml-1">/mo</span></div>
-          <div className="mt-4 pt-3 border-t border-white/5">
+          <div className="text-3xl font-bold text-gray-900 tracking-tight mb-1">$40<span className="text-sm text-gray-500 font-normal ml-1">/mo</span></div>
+          <div className="mt-4 pt-3 border-t border-black/5">
             <span className="inline-flex items-center text-xs font-semibold text-red-400 bg-red-500/10 px-2.5 py-1 rounded-md border border-red-500/10">
               ▲ 127% overpriced
             </span>
@@ -127,14 +128,14 @@ export default function HeroSection() {
         animate={{ opacity: 1, x: 0 }}
         transition={{ delay: 1.5, duration: 0.8 }}
       >
-        <div className="bg-[#0a0b14]/60 backdrop-blur-xl rounded-3xl p-5 w-60 shadow-2xl shadow-black/50 border border-white/10">
+        <div className="bg-white/60 backdrop-blur-xl rounded-3xl p-5 w-60 shadow-2xl shadow-black/50 border border-black/10">
           <div className="flex items-center gap-3 mb-4">
             <div className="w-8 h-8 rounded-full bg-gradient-to-br from-violet-500 to-purple-600 flex items-center justify-center text-sm font-bold text-white shadow-lg shadow-purple-500/20">C</div>
-            <span className="text-sm font-medium text-gray-200">Claude Team</span>
+            <span className="text-sm font-medium text-gray-800">Claude Team</span>
           </div>
-          <div className="text-3xl font-bold text-white tracking-tight mb-1">$90</div>
+          <div className="text-3xl font-bold text-gray-900 tracking-tight mb-1">$90</div>
           <div className="text-sm text-gray-500 mb-4">/mo · 3 seats</div>
-          <div className="mt-4 pt-3 border-t border-white/5">
+          <div className="mt-4 pt-3 border-t border-black/5">
             <span className="inline-flex items-center text-xs font-semibold text-emerald-400 bg-emerald-500/10 px-2.5 py-1 rounded-md border border-emerald-500/10">
               💡 Save $34/mo
             </span>
@@ -149,14 +150,14 @@ export default function HeroSection() {
         animate={{ opacity: 1, x: 0 }}
         transition={{ delay: 1.8, duration: 0.8 }}
       >
-        <div className="bg-[#0a0b14]/60 backdrop-blur-xl rounded-3xl p-6 w-64 shadow-2xl shadow-black/50 border border-white/10">
-          <div className="flex items-center gap-2 text-sm font-medium text-gray-400 mb-3">
+        <div className="bg-white/60 backdrop-blur-xl rounded-3xl p-6 w-64 shadow-2xl shadow-black/50 border border-black/10">
+          <div className="flex items-center gap-2 text-sm font-medium text-gray-600 mb-3">
             <svg className="w-4 h-4 text-violet-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
             </svg>
             Total AI Spend
           </div>
-          <div className="text-4xl font-extrabold text-white stat-number tracking-tight mb-1">$847</div>
+          <div className="text-4xl font-extrabold text-gray-900 stat-number tracking-tight mb-1">$847</div>
           <div className="text-sm text-gray-500 mb-5">/month · 12 tools</div>
           <div className="h-1.5 rounded-full bg-gray-800 overflow-hidden mb-3">
             <motion.div
@@ -168,7 +169,7 @@ export default function HeroSection() {
           </div>
           <div className="flex justify-between items-center text-xs font-semibold">
             <span className="text-violet-400">68% reducible</span>
-            <span className="text-white bg-white/10 px-2 py-0.5 rounded text-[10px] uppercase tracking-wider">Waste</span>
+            <span className="text-gray-700 bg-gray-100 px-2 py-0.5 rounded text-[10px] uppercase tracking-wider">Waste</span>
           </div>
         </div>
       </motion.div>
@@ -180,7 +181,7 @@ export default function HeroSection() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.1 }}
-          className="inline-flex items-center gap-2 bg-white/[0.03] border border-white/[0.08] text-gray-300 rounded-full px-5 py-2 text-sm font-semibold mb-8 backdrop-blur-md"
+          className="inline-flex items-center gap-2 bg-black/[0.03] border border-black/[0.08] text-gray-700 rounded-full px-5 py-2 text-sm font-semibold mb-8 backdrop-blur-md"
         >
           <span className="w-2 h-2 rounded-full bg-emerald-400 shadow-[0_0_8px_rgba(16,185,129,0.8)] animate-pulse" />
           Free AI Spend Audit · No credit card required
@@ -191,7 +192,7 @@ export default function HeroSection() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.2, ease: EASE_OUT }}
-          className="hero-headline text-5xl md:text-7xl font-extrabold text-white leading-tight tracking-tight mb-8"
+          className="hero-headline text-5xl md:text-7xl font-extrabold text-gray-900 leading-tight tracking-tight mb-8"
           style={{ letterSpacing: '-0.02em' }}
         >
           You&apos;re probably{' '}
@@ -212,11 +213,11 @@ export default function HeroSection() {
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.4, ease: EASE_OUT }}
-          className="text-xl md:text-2xl text-gray-400 max-w-3xl mx-auto leading-relaxed font-medium"
+          className="text-xl md:text-2xl text-gray-600 max-w-3xl mx-auto leading-relaxed font-medium"
         >
           GetPriced audits your team&apos;s AI tool subscriptions in 60 seconds.
           We pinpoint waste, surface cheaper alternatives, and show you exactly
-          how much you can save — <span className="text-white font-bold">for free</span>.
+          how much you can save — <span className="text-gray-900 font-bold">for free</span>.
         </motion.p>
 
         {/* TOP SPACER (Adjust this height to push the CTA down) */}
@@ -236,7 +237,7 @@ export default function HeroSection() {
 
           {/* Container: rounded-full to ensure capsule shape */}
           <div 
-            className="relative flex items-center bg-[#0a0b14]/90 border border-white/10 rounded-full gap-3 w-full shadow-2xl backdrop-blur-xl transition-all duration-300 hover:border-white/20"
+            className="relative flex items-center bg-white/90 border border-black/10 rounded-full gap-3 w-full shadow-2xl backdrop-blur-xl transition-all duration-300 hover:border-black/20"
             style={{ padding: '12px 12px 12px 32px' }}
           >
 
@@ -249,19 +250,21 @@ export default function HeroSection() {
             <input
               type="email"
               placeholder="Enter your work email..."
-              className="flex-1 bg-transparent text-white placeholder:text-gray-500 text-lg border-0 focus:ring-0 outline-none w-full"
+              className="flex-1 bg-transparent text-gray-900 placeholder:text-gray-500 text-lg border-0 focus:ring-0 outline-none w-full"
               style={{ padding: '16px 12px' }}
             />
 
             {/* Button */}
-            <button 
-              className="bg-white text-black hover:bg-gray-200 transition-all duration-300 rounded-full text-lg font-extrabold whitespace-nowrap flex items-center justify-center gap-2 shadow-[0_0_20px_rgba(255,255,255,0.2)] hover:scale-[1.02] active:scale-[0.98] group/btn"
-              style={{ padding: '20px 40px' }}
-            >
-              <Sparkles className="w-6 h-6 text-violet-600" />
-              Get Free Audit
-              <ArrowRight strokeWidth={2.5} className="w-6 h-6 transition-transform duration-300 group-hover/btn:translate-x-1" />
-            </button>
+            <Link href="/audit" className="group/btn">
+              <button 
+                className="bg-gray-900 text-white hover:bg-gray-800 transition-all duration-300 rounded-full text-lg font-extrabold whitespace-nowrap flex items-center justify-center gap-2 shadow-lg shadow-black/10 hover:scale-[1.02] active:scale-[0.98]"
+                style={{ padding: '20px 40px' }}
+              >
+                <Sparkles className="w-6 h-6 text-violet-600" />
+                Get Free Audit
+                <ArrowRight strokeWidth={2.5} className="w-6 h-6 transition-transform duration-300 group-hover/btn:translate-x-1" />
+              </button>
+            </Link>
           </div>
         </motion.div>
 
@@ -275,19 +278,19 @@ export default function HeroSection() {
           transition={{ delay: 0.9, duration: 0.6 }}
           className="flex flex-wrap items-center justify-center gap-x-8 gap-y-4 text-sm font-semibold"
         >
-          <span className="flex items-center gap-2 text-gray-400">
+          <span className="flex items-center gap-2 text-gray-600">
             <ShieldCheck className="w-5 h-5 text-emerald-400" />
             No credit card
           </span>
-          <span className="flex items-center gap-2 text-gray-400">
+          <span className="flex items-center gap-2 text-gray-600">
             <Zap className="w-5 h-5 text-amber-400" />
             Results in 60 seconds
           </span>
-          <span className="flex items-center gap-2 text-gray-400">
+          <span className="flex items-center gap-2 text-gray-600">
             <CheckCircle2 className="w-5 h-5 text-violet-400" />
             GDPR compliant
           </span>
-          <span className="flex items-center gap-2 text-gray-400">
+          <span className="flex items-center gap-2 text-gray-600">
             <Users className="w-5 h-5 text-blue-400" />
             3,200+ startups audited
           </span>

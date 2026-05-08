@@ -66,7 +66,7 @@ function FAQItem({ q, a, index, isOpen, onToggle }: {
         aria-expanded={isOpen}
         id={`faq-btn-${index}`}
       >
-        <span className="text-white font-bold text-base md:text-lg pr-4 group-hover:text-violet-300 transition-colors">
+        <span className="text-gray-900 font-bold text-base md:text-lg pr-4 group-hover:text-violet-300 transition-colors">
           {q}
         </span>
         <motion.div
@@ -74,7 +74,7 @@ function FAQItem({ q, a, index, isOpen, onToggle }: {
           transition={{ duration: 0.3, ease: EASE_OUT }}
           className={`flex-shrink-0 w-8 h-8 rounded-full border-2 flex items-center justify-center transition-all duration-300 ${isOpen
               ? 'bg-violet-500/20 border-violet-500/40 text-violet-300'
-              : 'border-white/10 text-gray-500 group-hover:border-white/20'
+              : 'border-black/10 text-gray-500 group-hover:border-black/20'
             }`}
         >
           <Plus className="w-4 h-4" />
@@ -91,7 +91,7 @@ function FAQItem({ q, a, index, isOpen, onToggle }: {
             className="overflow-hidden"
           >
             <p
-              className="text-gray-400 text-base leading-relaxed"
+              className="text-gray-600 text-base leading-relaxed"
               style={{ padding: '0 32px 32px 32px' }}
             >
               {a}
@@ -131,10 +131,10 @@ export default function FAQSection() {
           <div className="inline-flex items-center gap-2 badge-pill rounded-full px-4 py-1.5 text-sm font-medium mb-5">
             <HelpCircle className="w-4 h-4 text-violet-400" /> Common Questions
           </div>
-          <h2 className="text-4xl md:text-5xl font-extrabold text-white mb-4 text-center" style={{ letterSpacing: '-0.02em' }}>
+          <h2 className="text-4xl md:text-5xl font-extrabold text-gray-900 mb-4 text-center" style={{ letterSpacing: '-0.02em' }}>
             Answers to your <span className="gradient-text">real questions</span>
           </h2>
-          <p className="text-gray-400 text-lg text-center">
+          <p className="text-gray-600 text-lg text-center">
             Still skeptical? Good. We&apos;ll prove it.
           </p>
         </motion.div>
@@ -160,7 +160,7 @@ export default function FAQSection() {
           transition={{ delay: 0.5, duration: 0.6 }}
           className="text-center glass-card rounded-3xl p-10 mt-[-2rem]"
         >
-          <p className="text-gray-400 text-base md:text-lg mb-3 font-medium">Still have questions?</p>
+          <p className="text-gray-600 text-base md:text-lg mb-3 font-medium">Still have questions?</p>
           <a
             href="mailto:hello@getpriced.ai"
             className="text-violet-400 hover:text-violet-300 text-base md:text-lg font-bold transition-colors underline underline-offset-4"

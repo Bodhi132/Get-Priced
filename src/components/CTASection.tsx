@@ -4,6 +4,7 @@ import { motion, useInView } from 'framer-motion';
 import { useRef } from 'react';
 import { EASE_OUT } from '@/lib/easing';
 import { Mail, ArrowRight, Lock, ShieldCheck, Zap, Users, CheckCircle2 } from 'lucide-react';
+import Link from 'next/link';
 
 export default function CTASection() {
   const ref = useRef<HTMLElement>(null);
@@ -35,14 +36,14 @@ export default function CTASection() {
         >
           <div
             className="rounded-[23px] px-6 md:px-16 py-20 md:py-28 flex flex-col items-center justify-center text-center relative overflow-hidden"
-            style={{ background: 'linear-gradient(135deg, #0a0b14 0%, #05050a 100%)' }}
+            style={{ background: 'linear-gradient(135deg, #ffffff 0%, #f9fafb 100%)' }}
           >
             {/* Lock / Security badge */}
             <motion.div
               initial={{ opacity: 0, y: 16 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ delay: 0.2, duration: 0.5 }}
-              className="inline-flex items-center gap-2 bg-white/[0.03] border border-white/[0.08] text-gray-300 rounded-full px-5 py-2 text-sm font-semibold mb-10 backdrop-blur-md"
+              className="inline-flex items-center gap-2 bg-black/[0.03] border border-black/[0.08] text-gray-700 rounded-full px-5 py-2 text-sm font-semibold mb-10 backdrop-blur-md"
             >
               <Lock className="w-4 h-4 text-violet-400" />
               Secure, free forever, and zero spam
@@ -52,7 +53,7 @@ export default function CTASection() {
               initial={{ opacity: 0, y: 20 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ delay: 0.3, duration: 0.6 }}
-              className="text-5xl md:text-7xl font-extrabold text-white mb-6 text-center tracking-tight"
+              className="text-5xl md:text-7xl font-extrabold text-gray-900 mb-6 text-center tracking-tight"
               style={{ lineHeight: '1.1' }}
             >
               Stop bleeding money
@@ -64,10 +65,10 @@ export default function CTASection() {
               initial={{ opacity: 0, y: 16 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ delay: 0.45, duration: 0.6 }}
-              className="text-gray-400 text-xl md:text-2xl max-w-3xl mx-auto leading-relaxed font-medium"
+              className="text-gray-600 text-xl md:text-2xl max-w-3xl mx-auto leading-relaxed font-medium"
             >
               Join 3,200+ founders who ran a free audit and recovered an average of{' '}
-              <span className="text-white font-bold">$1,240/year</span> per team.
+              <span className="text-gray-900 font-bold">$1,240/year</span> per team.
             </motion.p>
 
             {/* Email CTA */}
@@ -82,7 +83,7 @@ export default function CTASection() {
               <div className="absolute -inset-1 bg-gradient-to-r from-violet-600 via-indigo-600 to-emerald-500 rounded-3xl blur-xl opacity-50 group-hover:opacity-75 transition duration-500 animate-pulse"></div>
 
               <div 
-                className="relative flex flex-col sm:flex-row items-center bg-[#0a0b14] border border-white/10 rounded-3xl gap-4 w-full shadow-2xl backdrop-blur-xl"
+                className="relative flex flex-col sm:flex-row items-center bg-gray-50 border border-black/10 rounded-3xl gap-4 w-full shadow-2xl backdrop-blur-xl"
                 style={{ padding: '16px 24px' }}
               >
                 <div className="hidden sm:flex pl-2 text-gray-500">
@@ -91,18 +92,20 @@ export default function CTASection() {
                 <input
                   type="email"
                   placeholder="Enter your work email..."
-                  className="flex-1 w-full bg-transparent text-white placeholder:text-gray-500 text-lg py-4 rounded-xl border-0 focus:ring-0 outline-none"
+                  className="flex-1 w-full bg-transparent text-gray-900 placeholder:text-gray-500 text-lg py-4 rounded-xl border-0 focus:ring-0 outline-none"
                   style={{ paddingLeft: '8px', paddingRight: '16px' }}
                   id="cta-email-input"
                 />
-                <button
-                  className="w-full sm:w-auto bg-white text-black hover:bg-gray-200 transition-colors rounded-[20px] text-lg font-extrabold whitespace-nowrap flex items-center justify-center gap-2 shadow-[0_0_20px_rgba(255,255,255,0.2)]"
-                  style={{ padding: '20px 40px' }}
-                  id="cta-audit-btn"
-                >
-                  Get Free Audit
-                  <ArrowRight className="w-5 h-5" />
-                </button>
+                <Link href="/audit" className="w-full sm:w-auto">
+                  <button
+                    className="w-full bg-gray-900 text-white hover:bg-gray-800 transition-colors rounded-[20px] text-lg font-extrabold whitespace-nowrap flex items-center justify-center gap-2 shadow-lg shadow-black/10"
+                    style={{ padding: '20px 40px' }}
+                    id="cta-audit-btn"
+                  >
+                    Get Free Audit
+                    <ArrowRight className="w-5 h-5" />
+                  </button>
+                </Link>
               </div>
             </motion.div>
 
@@ -113,19 +116,19 @@ export default function CTASection() {
               transition={{ delay: 0.7, duration: 0.6 }}
               className="flex flex-wrap items-center justify-center gap-x-8 gap-y-4 text-sm font-semibold"
             >
-              <div className="flex items-center gap-2 text-gray-400">
+              <div className="flex items-center gap-2 text-gray-600">
                 <ShieldCheck className="w-5 h-5 text-emerald-400" />
                 <span>No data sold. Ever.</span>
               </div>
-              <div className="flex items-center gap-2 text-gray-400">
+              <div className="flex items-center gap-2 text-gray-600">
                 <Zap className="w-5 h-5 text-amber-400" />
                 <span>60-second audit</span>
               </div>
-              <div className="flex items-center gap-2 text-gray-400">
+              <div className="flex items-center gap-2 text-gray-600">
                 <Users className="w-5 h-5 text-blue-400" />
                 <span>3,200+ founders</span>
               </div>
-              <div className="flex items-center gap-2 text-gray-400">
+              <div className="flex items-center gap-2 text-gray-600">
                 <CheckCircle2 className="w-5 h-5 text-violet-400" />
                 <span>Free forever</span>
               </div>

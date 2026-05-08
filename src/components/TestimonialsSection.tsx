@@ -125,11 +125,11 @@ export default function TestimonialsSection() {
           <div className="inline-flex items-center gap-2 badge-pill rounded-full px-4 py-1.5 text-sm font-medium mb-5">
             <MessageSquareQuote className="w-4 h-4 text-violet-400" /> Founder Stories
           </div>
-          <h2 className="text-4xl md:text-5xl font-extrabold text-white mb-4 text-center" style={{ letterSpacing: '-0.02em' }}>
+          <h2 className="text-4xl md:text-5xl font-extrabold text-gray-900 mb-4 text-center" style={{ letterSpacing: '-0.02em' }}>
             Real savings from{' '}
             <span className="gradient-text">real founders</span>
           </h2>
-          <p className="text-gray-400 text-lg max-w-xl mx-auto text-center">
+          <p className="text-gray-600 text-lg max-w-xl mx-auto text-center">
             Every testimonial below represents a real audit. Names and companies are from our beta cohort.
           </p>
         </motion.div>
@@ -151,7 +151,7 @@ export default function TestimonialsSection() {
               <StarRating count={t.stars} />
 
               {/* Quote */}
-              <blockquote className="text-white text-base leading-relaxed my-6 flex-1 font-medium">
+              <blockquote className="text-gray-900 text-base leading-relaxed my-6 flex-1 font-medium">
                 &ldquo;{t.quote}&rdquo;
               </blockquote>
 
@@ -160,7 +160,7 @@ export default function TestimonialsSection() {
                 {t.tools.map((tool) => (
                   <span
                     key={tool}
-                    className="text-xs font-semibold text-gray-400 bg-white/[0.04] border border-white/[0.08] px-3 py-1 rounded-full"
+                    className="text-xs font-semibold text-gray-600 bg-black/[0.04] border border-black/[0.08] px-3 py-1 rounded-full"
                   >
                     {tool}
                   </span>
@@ -168,7 +168,7 @@ export default function TestimonialsSection() {
               </div>
 
               {/* Divider */}
-              <div className="h-px bg-white/[0.08] mb-6 w-full" />
+              <div className="h-px bg-black/[0.08] mb-6 w-full" />
 
               {/* Author */}
               <div className="flex items-center justify-between mt-auto">
@@ -179,8 +179,8 @@ export default function TestimonialsSection() {
                     {t.avatar}
                   </div>
                   <div>
-                    <div className="text-white text-base font-bold">{t.name}</div>
-                    <div className="text-gray-400 text-xs font-medium mt-0.5">{t.title} · {t.company}</div>
+                    <div className="text-gray-900 text-base font-bold">{t.name}</div>
+                    <div className="text-gray-600 text-xs font-medium mt-0.5">{t.title} · {t.company}</div>
                   </div>
                 </div>
                 <div className="text-right">
@@ -207,32 +207,32 @@ export default function TestimonialsSection() {
           />
           
           <div 
-            className="relative bg-[#0a0b14]/95 backdrop-blur-2xl rounded-[23px] flex flex-col lg:flex-row items-center justify-between gap-10"
+            className="relative bg-white/95 backdrop-blur-2xl rounded-[23px] flex flex-col lg:flex-row items-center justify-between gap-10"
             style={{ padding: '48px 56px' }}
           >
             <div className="flex-1 text-center lg:text-left">
-              <h3 className="text-3xl md:text-4xl font-extrabold text-white mb-4 tracking-tight">
+              <h3 className="text-3xl md:text-4xl font-extrabold text-gray-900 mb-4 tracking-tight">
                 Your story could be next.
               </h3>
-              <p className="text-gray-400 text-lg max-w-xl mx-auto lg:mx-0 leading-relaxed">
-                Run your free audit and join <span className="text-white font-semibold">3,200+ founders</span> who discovered they were overpaying for AI tools.
+              <p className="text-gray-600 text-lg max-w-xl mx-auto lg:mx-0 leading-relaxed">
+                Run your free audit and join <span className="text-gray-900 font-semibold">3,200+ founders</span> who discovered they were overpaying for AI tools.
               </p>
             </div>
             
             <div className="flex-shrink-0 flex flex-col items-center lg:items-end gap-5">
               <a
                 href="#cta"
-                className="btn-primary inline-flex items-center gap-3 px-10 py-4 rounded-xl font-bold text-white text-lg hover:-translate-y-1 transition-transform shadow-xl shadow-violet-500/25"
+                className="btn-primary inline-flex items-center gap-3 px-10 py-4 rounded-xl font-bold text-gray-900 text-lg hover:-translate-y-1 transition-transform shadow-xl shadow-violet-500/25"
               >
                 Start My Free Audit <ArrowRight className="w-5 h-5" />
               </a>
               
               <div className="flex items-center gap-3">
                 <div className="flex -space-x-3">
-                  <div className="w-8 h-8 rounded-full bg-gradient-to-br from-violet-500 to-purple-500 border-2 border-[#0a0b14]" />
-                  <div className="w-8 h-8 rounded-full bg-gradient-to-br from-amber-400 to-orange-500 border-2 border-[#0a0b14]" />
-                  <div className="w-8 h-8 rounded-full bg-gradient-to-br from-emerald-400 to-teal-500 border-2 border-[#0a0b14]" />
-                  <div className="w-8 h-8 rounded-full bg-white/10 border-2 border-[#0a0b14] flex items-center justify-center text-[10px] font-bold text-white backdrop-blur-md">
+                  <div className="w-8 h-8 rounded-full bg-gradient-to-br from-violet-500 to-purple-500 border-2 border-white" />
+                  <div className="w-8 h-8 rounded-full bg-gradient-to-br from-amber-400 to-orange-500 border-2 border-white" />
+                  <div className="w-8 h-8 rounded-full bg-gradient-to-br from-emerald-400 to-teal-500 border-2 border-white" />
+                  <div className="w-8 h-8 rounded-full bg-black/10 border-2 border-white flex items-center justify-center text-[10px] font-bold text-gray-900 backdrop-blur-md">
                     +3k
                   </div>
                 </div>

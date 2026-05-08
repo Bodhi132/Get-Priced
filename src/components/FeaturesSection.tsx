@@ -90,10 +90,10 @@ export default function FeaturesSection() {
           <div className="inline-flex items-center gap-2 badge-pill rounded-full px-4 py-1.5 text-sm font-medium mb-5">
             <span>✨</span> Everything you need to cut AI costs
           </div>
-          <h2 className="text-4xl md:text-5xl font-extrabold text-white mb-4 text-center" style={{ letterSpacing: '-0.02em' }}>
+          <h2 className="text-4xl md:text-5xl font-extrabold text-gray-900 mb-4 text-center" style={{ letterSpacing: '-0.02em' }}>
             Built for <span className="gradient-text">founders who ship</span>
           </h2>
-          <p className="text-gray-400 text-lg max-w-xl mx-auto text-center">
+          <p className="text-gray-600 text-lg max-w-xl mx-auto text-center">
             Not another dashboard you&apos;ll never open. GetPriced gives you actionable cuts, not reports.
           </p>
         </motion.div>
@@ -115,16 +115,16 @@ export default function FeaturesSection() {
                   <div
                     className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${f.iconGrad} flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-lg`}
                   >
-                    <Icon className="w-7 h-7 text-white drop-shadow-md" strokeWidth={2.5} />
+                    <Icon className="w-7 h-7 text-gray-900 drop-shadow-md" strokeWidth={2.5} />
                   </div>
                   <span className={`text-[10px] uppercase tracking-wider font-bold px-3 py-1.5 rounded-full border ${f.tagColor}`}>
                     {f.tag}
                   </span>
                 </div>
-                <h3 className="text-white font-extrabold text-xl mb-3 leading-tight" style={{ fontFamily: 'Space Grotesk, sans-serif' }}>
+                <h3 className="text-gray-900 font-extrabold text-xl mb-3 leading-tight" style={{ fontFamily: 'Space Grotesk, sans-serif' }}>
                   {f.title}
                 </h3>
-                <p className="text-gray-400 text-base leading-relaxed">{f.description}</p>
+                <p className="text-gray-600 text-base leading-relaxed">{f.description}</p>
               </motion.div>
             );
           })}
@@ -140,16 +140,16 @@ export default function FeaturesSection() {
         >
           <div className="rounded-3xl bg-[#0e0f1a] p-10 md:p-14 flex flex-col items-center justify-center gap-8 text-center">
             <div>
-              <h3 className="text-3xl md:text-4xl font-extrabold text-white mb-4" style={{ letterSpacing: '-0.02em' }}>
+              <h3 className="text-3xl md:text-4xl font-extrabold text-gray-900 mb-4" style={{ letterSpacing: '-0.02em' }}>
                 Average team saves <span className="gradient-text">$1,240/year</span>
               </h3>
-              <p className="text-gray-400 text-base md:text-lg">
+              <p className="text-gray-600 text-base md:text-lg">
                 Based on a 5-person engineering team using 4–8 AI tools.
               </p>
             </div>
             <a
               href="#cta"
-              className="btn-primary px-10 py-4 rounded-xl font-bold text-white text-base whitespace-nowrap shadow-lg shadow-violet-500/20 hover:-translate-y-1 transition-transform"
+              className="btn-primary px-10 py-4 rounded-xl font-bold text-gray-900 text-base whitespace-nowrap shadow-lg shadow-violet-500/20 hover:-translate-y-1 transition-transform"
             >
               Get My Number →
             </a>

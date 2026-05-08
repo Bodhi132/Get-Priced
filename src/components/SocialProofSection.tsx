@@ -150,12 +150,12 @@ export default function SocialProofSection() {
             <span className="text-amber-400">💰</span>
             Real Savings, Real Data
           </div>
-          <h2 className="text-4xl md:text-5xl font-extrabold text-white mb-4 text-center" style={{ letterSpacing: '-0.02em' }}>
+          <h2 className="text-4xl md:text-5xl font-extrabold text-gray-900 mb-4 text-center" style={{ letterSpacing: '-0.02em' }}>
             The numbers don&apos;t lie.
             <br />
             <span className="gradient-text">Your team is overspending.</span>
           </h2>
-          <p className="text-gray-400 text-lg max-w-2xl mx-auto text-center">
+          <p className="text-gray-600 text-lg max-w-2xl mx-auto text-center">
             We&apos;ve analyzed AI spending from 3,200+ startups. Here&apos;s what we found.
           </p>
         </motion.div>
@@ -176,7 +176,7 @@ export default function SocialProofSection() {
                   <AnimatedCounter value={stat.value} suffix={stat.suffix} inView={inView} />
                 </span>
               </div>
-              <div className="text-white font-semibold text-sm mb-1">{stat.label}</div>
+              <div className="text-gray-900 font-semibold text-sm mb-1">{stat.label}</div>
               <div className="text-gray-500 text-xs">{stat.sublabel}</div>
             </motion.div>
           ))}
@@ -191,16 +191,16 @@ export default function SocialProofSection() {
             variants={fadeUp}
             initial="hidden"
             animate={inView ? 'visible' : 'hidden'}
-            className="glass-card rounded-2xl overflow-hidden border border-white/[0.08]"
+            className="glass-card rounded-2xl overflow-hidden border border-black/[0.08]"
           >
             {/* Browser bar */}
-            <div className="flex items-center gap-3 px-5 py-4 border-b border-white/[0.06] bg-white/[0.02]">
+            <div className="flex items-center gap-3 px-5 py-4 border-b border-black/[0.06] bg-white/[0.02]">
               <div className="flex gap-1.5">
                 <div className="w-2.5 h-2.5 rounded-full bg-red-400/50" />
                 <div className="w-2.5 h-2.5 rounded-full bg-yellow-400/50" />
                 <div className="w-2.5 h-2.5 rounded-full bg-emerald-400/50" />
               </div>
-              <span className="text-xs font-mono text-gray-500 bg-white/[0.04] px-3 py-1 rounded-full border border-white/[0.06]">
+              <span className="text-xs font-mono text-gray-500 bg-black/[0.04] px-3 py-1 rounded-full border border-black/[0.06]">
                 getpriced.ai/audit — AI Spend Analysis Report
               </span>
             </div>
@@ -209,7 +209,7 @@ export default function SocialProofSection() {
             <div className="overflow-x-auto pb-2">
               <table className="w-full border-collapse min-w-[700px]">
                 <thead>
-                  <tr className="border-b border-white/[0.06] bg-white/[0.02]">
+                  <tr className="border-b border-black/[0.06] bg-white/[0.02]">
                     <th className="text-left text-[11px] font-medium text-gray-500 uppercase tracking-widest pl-8 md:pl-12 pr-6 py-6 whitespace-nowrap">
                       Tool
                     </th>
@@ -243,7 +243,7 @@ export default function SocialProofSection() {
                           >
                             {row.icon}
                           </div>
-                          <span className="text-base font-semibold text-white whitespace-nowrap">{row.tool}</span>
+                          <span className="text-base font-semibold text-gray-900 whitespace-nowrap">{row.tool}</span>
                         </div>
                       </td>
 
@@ -254,7 +254,7 @@ export default function SocialProofSection() {
 
                       {/* Alternative */}
                       <td className="px-6 py-7 whitespace-nowrap">
-                        <span className="text-base text-gray-300">{row.alternative}</span>
+                        <span className="text-base text-gray-700">{row.alternative}</span>
                       </td>
 
                       {/* Savings badge */}
@@ -269,9 +269,9 @@ export default function SocialProofSection() {
 
                 {/* Footer total */}
                 <tfoot>
-                  <tr className="border-t border-white/[0.06] bg-white/[0.02]">
+                  <tr className="border-t border-black/[0.06] bg-white/[0.02]">
                     <td colSpan={3} className="pl-8 md:pl-12 pr-6 py-8">
-                      <span className="text-base font-semibold text-gray-400 whitespace-nowrap">
+                      <span className="text-base font-semibold text-gray-600 whitespace-nowrap">
                         Total potential savings per month
                       </span>
                     </td>

@@ -39,7 +39,7 @@ export default function Navbar() {
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.6, ease: EASE_OUT }}
       className={`sticky top-0 left-0 right-0 z-50 transition-colors duration-300 ${scrolled
-          ? 'bg-[rgba(8,9,13,0.85)] backdrop-blur-xl border-b border-white/10 shadow-lg shadow-black/20'
+          ? 'bg-[rgba(8,9,13,0.85)] backdrop-blur-xl border-b border-black/10 shadow-lg shadow-black/20'
           : 'bg-transparent border-b border-transparent'
         }`}
     >
@@ -50,11 +50,11 @@ export default function Navbar() {
           <a href="/" className="flex items-center gap-3 group focus:outline-none">
             <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-violet-500 to-indigo-600 flex items-center justify-center glow-purple shadow-md transition-transform duration-300 group-hover:scale-105">
               <svg width="20" height="20" viewBox="0 0 16 16" fill="none">
-                <path d="M8 1L14 4.5V11.5L8 15L2 11.5V4.5L8 1Z" fill="white" fillOpacity="0.9" />
-                <path d="M8 4L11.5 6V10L8 12L4.5 10V6L8 4Z" fill="white" fillOpacity="0.4" />
+                <path d="M8 1L14 4.5V11.5L8 15L2 11.5V4.5L8 1Z" fill="#111827" fillOpacity="0.9" />
+                <path d="M8 4L11.5 6V10L8 12L4.5 10V6L8 4Z" fill="#111827" fillOpacity="0.4" />
               </svg>
             </div>
-            <span className="font-bold text-xl tracking-tight text-white" style={{ fontFamily: 'Space Grotesk, sans-serif' }}>
+            <span className="font-bold text-xl tracking-tight text-gray-900" style={{ fontFamily: 'Space Grotesk, sans-serif' }}>
               Get<span className="gradient-text">Priced</span>
             </span>
           </a>
@@ -66,7 +66,7 @@ export default function Navbar() {
             <a
               key={link.href}
               href={link.href}
-              className="text-sm font-medium text-gray-400 hover:text-white transition-colors duration-200 relative group py-2"
+              className="text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors duration-200 relative group py-2"
             >
               {link.label}
               <span className="absolute bottom-0 left-0 w-0 h-[2px] rounded-full bg-violet-400 transition-all duration-300 ease-out group-hover:w-full opacity-0 group-hover:opacity-100" />
@@ -85,7 +85,7 @@ export default function Navbar() {
 
           {/* Mobile menu toggle */}
           <button
-            className="md:hidden flex items-center justify-center w-10 h-10 text-gray-300 hover:text-white focus:outline-none"
+            className="md:hidden flex items-center justify-center w-10 h-10 text-gray-700 hover:text-gray-900 focus:outline-none"
             onClick={() => setMenuOpen(!menuOpen)}
             aria-expanded={menuOpen}
             aria-label={menuOpen ? "Close menu" : "Open menu"}
@@ -107,7 +107,7 @@ export default function Navbar() {
             animate={{ opacity: 1, height: '100vh' }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.3, ease: 'easeInOut' }}
-            className="md:hidden bg-[#08090d] border-t border-white/10 overflow-hidden"
+            className="md:hidden bg-white border-t border-black/10 overflow-hidden"
           >
             <nav className="flex flex-col gap-6 px-6 pt-8 pb-12 h-full">
               {links.map((link, i) => (
@@ -117,7 +117,7 @@ export default function Navbar() {
                   transition={{ delay: i * 0.1, duration: 0.3 }}
                   key={link.href}
                   href={link.href}
-                  className="text-lg font-medium text-gray-300 hover:text-white transition-colors"
+                  className="text-lg font-medium text-gray-700 hover:text-gray-900 transition-colors"
                   onClick={() => setMenuOpen(false)}
                 >
                   {link.label}
@@ -128,7 +128,7 @@ export default function Navbar() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.4, duration: 0.3 }}
-                className="mt-4 pt-6 border-t border-white/10"
+                className="mt-4 pt-6 border-t border-black/10"
               >
                 <a
                   href="#cta"
