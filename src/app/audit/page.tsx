@@ -9,8 +9,10 @@ import ProgressBar   from '@/components/audit/ProgressBar';
 import ToolSelection from '@/components/audit/ToolSelection';
 import PlanConfig    from '@/components/audit/PlanConfig';
 import UseCaseConfig from '@/components/audit/UseCaseConfig';
-import EmailSubmit   from '@/components/audit/EmailSubmit';
-import SuccessState  from '@/components/audit/SuccessState';
+import AuditSummary  from '@/components/audit/AuditSummary';
+
+import { useRouter } from 'next/navigation';
+
 
 const AI_TOOLS = [
   { id: 'cursor',        name: 'Cursor',         iconSrc: '/ai-icons/cursor.png',               icon: Code,
@@ -123,11 +125,11 @@ const TOTAL_STEPS = 4;
 
 export default function AuditPage() {
   const [step, setStep]                   = useState(1);
-  const [email, setEmail]                 = useState('');
   const [selectedTools, setSelectedTools] = useState<string[]>([]);
+
   const [toolDetails, setToolDetails]     = useState<Record<string, { plans: { name: string; users: number; customCost: number; processingMode?: string }[]; useCases: string[] }>>({});
   const [isSubmitting, setIsSubmitting]   = useState(false);
-  const [submitted, setSubmitted]         = useState(false);
+
 
   const toggleTool = (toolId: string) => {
     setSelectedTools(prev => {
@@ -183,13 +185,37 @@ export default function AuditPage() {
     });
   };
 
+  const router = useRouter();
+  const [error, setError] = useState<string | null>(null);
+
   const nextStep    = () => { if (!canContinue) return; setStep(s => Math.min(s + 1, TOTAL_STEPS)); };
   const prevStep    = () => setStep(s => Math.max(s - 1, 1));
-  const canContinue = step === 1 ? selectedTools.length > 0 : true;
+  const canContinue = (() => {
+    if (step === 1) return selectedTools.length > 0;
+    if (step === 2) {
+      return selectedTools.every(toolId => {
+        const details = toolDetails[toolId];
+        if (!details || details.plans.length === 0) return false;
+        
+        const toolInfo = AI_TOOLS.find(t => t.id === toolId);
+        return details.plans.every(p => {
+          const planInfo = toolInfo?.plans.find(apiPlan => apiPlan.name === p.name);
+          // If the plan is marked as custom in AI_TOOLS, it must have a customCost > 0
+          if (planInfo?.isCustom) {
+            return p.customCost > 0;
+          }
+          return true;
+        });
+      });
+    }
+    return true;
+  })();
+
 
   const submitForm = async () => {
-    if (!email) return;
     setIsSubmitting(true);
+    setError(null);
+
     const payload = selectedTools.flatMap(id => {
       const info = AI_TOOLS.find(t => t.id === id);
       const d    = toolDetails[id];
@@ -206,23 +232,44 @@ export default function AuditPage() {
         };
       });
     });
+
     try {
-      const res = await fetch('http://localhost:5000/api/audit', {
+      const response = await fetch('http://localhost:5000/api/audit', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, tools: payload }),
+        body: JSON.stringify({ tools: payload }),
       });
-      if (res.ok) setSubmitted(true);
-    } catch (err) { console.error(err); }
-    finally { setIsSubmitting(false); }
+
+      const result = await response.json();
+
+      if (!response.ok) {
+        throw new Error(result.message || 'Failed to generate audit. Please try again.');
+      }
+
+      // Store the audit results in sessionStorage for the results page
+      if (typeof window !== 'undefined') {
+        sessionStorage.setItem('lastAuditResult', JSON.stringify(result.data));
+      }
+
+      // Redirect to the results page
+      router.push('/audit-results');
+      
+    } catch (err: any) {
+      console.error('Submission error:', err);
+      setError(err.message || 'An unexpected error occurred. Please try again.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
+
+
 
   return (
     <div className="min-h-screen bg-[#f8f9fb] flex flex-col">
 
       {/* ─── Fixed Back Button (top-left) ─── */}
       <div className="fixed top-5 left-5 z-40">
-        {step > 1 && !submitted ? (
+        {step > 1 ? (
           <button
             onClick={prevStep}
             className="flex items-center gap-1.5 px-4 py-2 rounded-xl bg-white shadow-sm text-sm font-semibold text-gray-500 hover:text-gray-800 hover:shadow-md transition-all"
@@ -246,15 +293,13 @@ export default function AuditPage() {
         <div className="w-full max-w-2xl flex flex-col items-center gap-8">
 
           {/* Progress Bar */}
-          {!submitted && (
-            <motion.div
-              initial={{ opacity: 0, y: -8 }}
-              animate={{ opacity: 1, y: 0 }}
-              className="w-full"
-            >
-              <ProgressBar step={step} totalSteps={TOTAL_STEPS} />
-            </motion.div>
-          )}
+          <motion.div
+            initial={{ opacity: 0, y: -8 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="w-full"
+          >
+            <ProgressBar step={step} totalSteps={TOTAL_STEPS} />
+          </motion.div>
 
           {/* Step Content */}
           <div className="w-full">
@@ -288,23 +333,35 @@ export default function AuditPage() {
                   onUpdate={toggleUseCase}
                 />
               )}
-              {step === 4 && !submitted && (
-                <EmailSubmit
-                  key="s4"
-                  email={email}
-                  onEmailChange={setEmail}
-                  onSubmit={submitForm}
-                  isSubmitting={isSubmitting}
-                  selectedToolsCount={selectedTools.length}
-                />
+              {step === 4 && (
+                <div className="flex flex-col gap-4">
+                  <AuditSummary
+                    key="s4"
+                    selectedTools={selectedTools}
+                    aiTools={AI_TOOLS}
+                    toolDetails={toolDetails}
+                    isSubmitting={isSubmitting}
+                    onSubmit={submitForm}
+                  />
+                  {error && (
+                    <motion.div 
+                      initial={{ opacity: 0, height: 0 }}
+                      animate={{ opacity: 1, height: 'auto' }}
+                      className="text-red-500 text-sm bg-red-50 border border-red-100 p-3 rounded-xl text-center"
+                    >
+                      {error}
+                    </motion.div>
+                  )}
+                </div>
               )}
-              {submitted && <SuccessState key="success" email={email} />}
+
             </AnimatePresence>
           </div>
 
           {/* ─── Continue Button (below form, centered) ─── */}
-          {!submitted && step < 4 && (
+          {step < 4 && (
             <motion.div
+
               initial={{ opacity: 0, y: 8 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.15 }}
@@ -324,13 +381,13 @@ export default function AuditPage() {
               </motion.button>
 
               {/* Helper text when disabled */}
-              {!canContinue && step === 1 && (
+              {!canContinue && (
                 <motion.p
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   className="mt-3 text-xs text-gray-400 text-center absolute translate-y-12"
                 >
-                  Select at least one tool to continue
+                  {step === 1 ? "Select at least one tool to continue" : "Please enter pricing for custom plans"}
                 </motion.p>
               )}
             </motion.div>
@@ -343,3 +400,4 @@ export default function AuditPage() {
     </div>
   );
 }
+

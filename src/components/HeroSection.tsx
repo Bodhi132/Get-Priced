@@ -27,7 +27,7 @@ function RotatingWords() {
         animate={{ y: 0, opacity: 1 }}
         exit={{ y: -40, opacity: 0 }}
         transition={{ duration: 0.45, ease: EASE_OUT }}
-        className="absolute left-0 gradient-text font-extrabold"
+        className="absolute left-0 bg-gradient-to-r from-[#51bc8f] to-emerald-400 bg-clip-text text-transparent font-extrabold pb-2"
       >
         {TOOLS[index]}
       </motion.span>
@@ -55,7 +55,7 @@ export default function HeroSection() {
     <section
       ref={containerRef}
       onMouseMove={handleMouseMove}
-      className="relative flex flex-col min-h-[calc(100vh-80px)] pt-32 pb-20 items-center overflow-hidden grid-bg"
+      className="relative flex flex-col min-h-[calc(100vh-80px)] pt-32 pb-20 items-center overflow-hidden"
       id="hero"
     >
       {/* Animated background glow */}
@@ -71,7 +71,7 @@ export default function HeroSection() {
             transform: 'translateX(-50%)',
             width: '900px',
             height: '500px',
-            background: 'radial-gradient(ellipse at center, rgba(124,58,237,0.28) 0%, rgba(79,70,229,0.12) 45%, transparent 75%)',
+            background: 'radial-gradient(ellipse at center, rgba(81,188,143,0.15) 0%, rgba(16,185,129,0.05) 45%, transparent 75%)',
             filter: 'blur(40px)',
           }}
         />
@@ -82,7 +82,7 @@ export default function HeroSection() {
             left: '15%',
             width: '400px',
             height: '400px',
-            background: 'radial-gradient(ellipse at center, rgba(16,185,129,0.10) 0%, transparent 70%)',
+            background: 'radial-gradient(ellipse at center, rgba(81,188,143,0.12) 0%, transparent 70%)',
             filter: 'blur(60px)',
           }}
         />
@@ -93,7 +93,7 @@ export default function HeroSection() {
             right: '10%',
             width: '350px',
             height: '350px',
-            background: 'radial-gradient(ellipse at center, rgba(96,165,250,0.10) 0%, transparent 70%)',
+            background: 'radial-gradient(ellipse at center, rgba(52,211,153,0.10) 0%, transparent 70%)',
             filter: 'blur(50px)',
           }}
         />
@@ -107,9 +107,9 @@ export default function HeroSection() {
         animate={{ opacity: 1, x: 0 }}
         transition={{ delay: 1.2, duration: 0.8 }}
       >
-        <div className="bg-white/60 backdrop-blur-xl rounded-3xl p-5 w-56 shadow-2xl shadow-black/50 border border-black/10">
+        <div className="bg-white/80 backdrop-blur-xl rounded-3xl p-5 w-56 shadow-xl shadow-[#51bc8f]/10 border border-gray-100">
           <div className="flex items-center gap-3 mb-4">
-            <div className="w-8 h-8 rounded-full bg-gradient-to-br from-amber-400 to-orange-500 flex items-center justify-center text-sm font-bold text-white shadow-lg shadow-orange-500/20">C</div>
+            <div className="w-8 h-8 rounded-full bg-gradient-to-br from-emerald-400 to-teal-500 flex items-center justify-center text-sm font-bold text-white shadow-lg shadow-emerald-500/20">C</div>
             <span className="text-sm font-medium text-gray-800">Cursor Pro</span>
           </div>
           <div className="text-3xl font-bold text-gray-900 tracking-tight mb-1">$40<span className="text-sm text-gray-500 font-normal ml-1">/mo</span></div>
@@ -128,15 +128,15 @@ export default function HeroSection() {
         animate={{ opacity: 1, x: 0 }}
         transition={{ delay: 1.5, duration: 0.8 }}
       >
-        <div className="bg-white/60 backdrop-blur-xl rounded-3xl p-5 w-60 shadow-2xl shadow-black/50 border border-black/10">
+        <div className="bg-white/80 backdrop-blur-xl rounded-3xl p-5 w-60 shadow-xl shadow-[#51bc8f]/10 border border-gray-100">
           <div className="flex items-center gap-3 mb-4">
-            <div className="w-8 h-8 rounded-full bg-gradient-to-br from-violet-500 to-purple-600 flex items-center justify-center text-sm font-bold text-white shadow-lg shadow-purple-500/20">C</div>
+            <div className="w-8 h-8 rounded-full bg-gradient-to-br from-[#51bc8f] to-emerald-600 flex items-center justify-center text-sm font-bold text-white shadow-lg shadow-[#51bc8f]/20">C</div>
             <span className="text-sm font-medium text-gray-800">Claude Team</span>
           </div>
           <div className="text-3xl font-bold text-gray-900 tracking-tight mb-1">$90</div>
           <div className="text-sm text-gray-500 mb-4">/mo · 3 seats</div>
-          <div className="mt-4 pt-3 border-t border-black/5">
-            <span className="inline-flex items-center text-xs font-semibold text-emerald-400 bg-emerald-500/10 px-2.5 py-1 rounded-md border border-emerald-500/10">
+          <div className="mt-4 pt-3 border-t border-gray-100">
+            <span className="inline-flex items-center text-xs font-bold text-[#51bc8f] bg-[#51bc8f]/10 px-2.5 py-1 rounded-md border border-[#51bc8f]/20">
               💡 Save $34/mo
             </span>
           </div>
@@ -150,25 +150,25 @@ export default function HeroSection() {
         animate={{ opacity: 1, x: 0 }}
         transition={{ delay: 1.8, duration: 0.8 }}
       >
-        <div className="bg-white/60 backdrop-blur-xl rounded-3xl p-6 w-64 shadow-2xl shadow-black/50 border border-black/10">
+        <div className="bg-white/80 backdrop-blur-xl rounded-3xl p-6 w-64 shadow-xl shadow-[#51bc8f]/10 border border-gray-100">
           <div className="flex items-center gap-2 text-sm font-medium text-gray-600 mb-3">
-            <svg className="w-4 h-4 text-violet-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <svg className="w-4 h-4 text-[#51bc8f]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
             </svg>
             Total AI Spend
           </div>
           <div className="text-4xl font-extrabold text-gray-900 stat-number tracking-tight mb-1">$847</div>
           <div className="text-sm text-gray-500 mb-5">/month · 12 tools</div>
-          <div className="h-1.5 rounded-full bg-gray-800 overflow-hidden mb-3">
+          <div className="h-1.5 rounded-full bg-gray-100 overflow-hidden mb-3">
             <motion.div
-              className="h-full rounded-full bg-gradient-to-r from-violet-500 to-indigo-500 shadow-[0_0_10px_rgba(124,58,237,0.8)]"
+              className="h-full rounded-full bg-gradient-to-r from-[#51bc8f] to-emerald-400 shadow-[0_0_10px_rgba(81,188,143,0.5)]"
               initial={{ width: 0 }}
               animate={{ width: '68%' }}
               transition={{ delay: 2.5, duration: 1.2, ease: "easeOut" }}
             />
           </div>
           <div className="flex justify-between items-center text-xs font-semibold">
-            <span className="text-violet-400">68% reducible</span>
+            <span className="text-[#51bc8f]">68% reducible</span>
             <span className="text-gray-700 bg-gray-100 px-2 py-0.5 rounded text-[10px] uppercase tracking-wider">Waste</span>
           </div>
         </div>
@@ -181,9 +181,9 @@ export default function HeroSection() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.1 }}
-          className="inline-flex items-center gap-2 bg-black/[0.03] border border-black/[0.08] text-gray-700 rounded-full px-5 py-2 text-sm font-semibold mb-8 backdrop-blur-md"
+          className="inline-flex items-center gap-2 bg-white/60 border border-gray-200 text-gray-700 rounded-full px-5 py-2 text-sm font-semibold mb-8 backdrop-blur-md shadow-sm"
         >
-          <span className="w-2 h-2 rounded-full bg-emerald-400 shadow-[0_0_8px_rgba(16,185,129,0.8)] animate-pulse" />
+          <span className="w-2 h-2 rounded-full bg-[#51bc8f] shadow-[0_0_8px_rgba(81,188,143,0.8)] animate-pulse" />
           Free AI Spend Audit · No credit card required
         </motion.div>
 
@@ -197,9 +197,9 @@ export default function HeroSection() {
         >
           You&apos;re probably{' '}
           <span className="relative inline-block">
-            <span className="gradient-text">overpaying</span>
+            <span className="bg-gradient-to-r from-[#51bc8f] to-emerald-400 bg-clip-text text-transparent pb-2">overpaying</span>
             <motion.span
-              className="absolute -bottom-1 left-0 right-0 h-0.5 bg-gradient-to-r from-violet-500 to-indigo-500 rounded-full"
+              className="absolute -bottom-1 left-0 right-0 h-0.5 bg-gradient-to-r from-[#51bc8f] to-emerald-400 rounded-full"
               initial={{ scaleX: 0 }}
               animate={{ scaleX: 1 }}
               transition={{ delay: 1, duration: 0.8 }}
@@ -233,16 +233,16 @@ export default function HeroSection() {
           style={{ maxWidth: '680px' }}
         >
           {/* Animated glow effect */}
-          <div className="absolute -inset-1 bg-gradient-to-r from-violet-600 via-indigo-600 to-emerald-500 rounded-full blur-xl opacity-40 group-hover:opacity-70 transition duration-500 animate-pulse"></div>
+          <div className="absolute -inset-1 bg-gradient-to-r from-[#51bc8f] via-emerald-400 to-teal-400 rounded-full blur-xl opacity-30 group-hover:opacity-50 transition duration-500 animate-pulse"></div>
 
           {/* Container: rounded-full to ensure capsule shape */}
           <div 
-            className="relative flex items-center bg-white/90 border border-black/10 rounded-full gap-3 w-full shadow-2xl backdrop-blur-xl transition-all duration-300 hover:border-black/20"
+            className="relative flex items-center bg-white border border-gray-200 rounded-full gap-3 w-full shadow-xl shadow-gray-200/50 backdrop-blur-xl transition-all duration-300 hover:border-[#51bc8f]/30"
             style={{ padding: '12px 12px 12px 32px' }}
           >
 
             {/* Mail Icon Wrapper */}
-            <div className="text-gray-500 group-focus-within:text-violet-400 transition-colors duration-300 flex-shrink-0 flex items-center">
+            <div className="text-gray-400 group-focus-within:text-[#51bc8f] transition-colors duration-300 flex-shrink-0 flex items-center">
               <Mail strokeWidth={2} className="w-7 h-7" />
             </div>
 
@@ -250,17 +250,17 @@ export default function HeroSection() {
             <input
               type="email"
               placeholder="Enter your work email..."
-              className="flex-1 bg-transparent text-gray-900 placeholder:text-gray-500 text-lg border-0 focus:ring-0 outline-none w-full"
+              className="flex-1 bg-transparent text-gray-900 placeholder:text-gray-400 font-medium text-lg border-0 focus:ring-0 outline-none w-full"
               style={{ padding: '16px 12px' }}
             />
 
             {/* Button */}
             <Link href="/audit" className="group/btn">
               <button 
-                className="bg-gray-900 text-white hover:bg-gray-800 transition-all duration-300 rounded-full text-lg font-extrabold whitespace-nowrap flex items-center justify-center gap-2 shadow-lg shadow-black/10 hover:scale-[1.02] active:scale-[0.98]"
+                className="bg-gray-900 text-white hover:bg-black transition-all duration-300 rounded-full text-lg font-extrabold whitespace-nowrap flex items-center justify-center gap-2 shadow-lg shadow-gray-900/20 hover:scale-[1.02] active:scale-[0.98]"
                 style={{ padding: '20px 40px' }}
               >
-                <Sparkles className="w-6 h-6 text-violet-600" />
+                <Sparkles className="w-6 h-6 text-[#51bc8f]" />
                 Get Free Audit
                 <ArrowRight strokeWidth={2.5} className="w-6 h-6 transition-transform duration-300 group-hover/btn:translate-x-1" />
               </button>
@@ -279,19 +279,19 @@ export default function HeroSection() {
           className="flex flex-wrap items-center justify-center gap-x-8 gap-y-4 text-sm font-semibold"
         >
           <span className="flex items-center gap-2 text-gray-600">
-            <ShieldCheck className="w-5 h-5 text-emerald-400" />
+            <ShieldCheck className="w-5 h-5 text-[#51bc8f]" />
             No credit card
           </span>
           <span className="flex items-center gap-2 text-gray-600">
-            <Zap className="w-5 h-5 text-amber-400" />
+            <Zap className="w-5 h-5 text-emerald-400" />
             Results in 60 seconds
           </span>
           <span className="flex items-center gap-2 text-gray-600">
-            <CheckCircle2 className="w-5 h-5 text-violet-400" />
+            <CheckCircle2 className="w-5 h-5 text-teal-400" />
             GDPR compliant
           </span>
           <span className="flex items-center gap-2 text-gray-600">
-            <Users className="w-5 h-5 text-blue-400" />
+            <Users className="w-5 h-5 text-cyan-500" />
             3,200+ startups audited
           </span>
         </motion.div>
