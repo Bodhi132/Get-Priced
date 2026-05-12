@@ -1,6 +1,7 @@
 'use client';
 
-import { useEffect, useState, useRef } from 'react';
+import { useEffect, useState, useRef, Suspense } from 'react';
+import { useSearchParams } from 'next/navigation';
 import { motion, AnimatePresence, useInView, animate } from 'framer-motion';
 import {
   Sparkles,
@@ -62,28 +63,48 @@ interface AuditData {
   strategic_summary: string;
 }
 
-export default function AuditResultsPage() {
+function AuditResultsContent() {
   const [data, setData] = useState<AuditData | null>(null);
+  const searchParams = useSearchParams();
+  const queryId = searchParams.get('id');
   const [isLoading, setIsLoading] = useState(true);
   const [isCopied, setIsCopied] = useState(false);
   const [isExporting, setIsExporting] = useState(false);
   const reportRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const savedData = sessionStorage.getItem('lastAuditResult');
-    if (savedData) {
+    const fetchData = async (id: string) => {
       try {
-        setData(JSON.parse(savedData));
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000'}/api/audit/${id}`);
+        if (res.ok) {
+          const json = await res.json();
+          setData({ ...json.data, auditId: id });
+        }
       } catch (err) {
-        console.error('Failed to parse audit results', err);
+        console.error('Failed to fetch public audit', err);
+      } finally {
+        setIsLoading(false);
       }
+    };
+
+    if (queryId) {
+      fetchData(queryId);
+    } else {
+      const savedData = sessionStorage.getItem('lastAuditResult');
+      if (savedData) {
+        try {
+          setData(JSON.parse(savedData));
+        } catch (err) {
+          console.error('Failed to parse audit results', err);
+        }
+      }
+      setIsLoading(false);
     }
-    setIsLoading(false);
-  }, []);
+  }, [queryId]);
 
   const handleShare = () => {
     if (!data?.auditId) return;
-    const shareUrl = `${window.location.origin}/audit/${data.auditId}`;
+    const shareUrl = `${window.location.origin}/audit-results?id=${data.auditId}`;
     navigator.clipboard.writeText(shareUrl);
     setIsCopied(true);
     setTimeout(() => setIsCopied(false), 2000);
@@ -275,7 +296,7 @@ export default function AuditResultsPage() {
                 <div className="flex items-center gap-3 px-3 py-2 bg-gray-50 rounded-lg border border-gray-100 flex-1 w-full overflow-hidden">
                   <LinkIcon className="w-4 h-4 text-gray-400 shrink-0" />
                   <code className="text-xs text-gray-500 font-mono truncate">
-                    {typeof window !== 'undefined' ? `${window.location.origin}/audit/${auditId}` : ''}
+                    {typeof window !== 'undefined' ? `${window.location.origin}/audit-results?id=${auditId}` : ''}
                   </code>
                 </div>
                 <button
@@ -397,5 +418,17 @@ export default function AuditResultsPage() {
         <LeadCaptureForm totalMonthlySavings={total_monthly_savings} />
       </section>
     </div>
+  );
+}
+
+export default function AuditResultsPage() {
+  return (
+    <Suspense fallback={
+      <div className="min-h-screen bg-[#f8f9fb] flex items-center justify-center">
+        <div className="w-12 h-12 border-4 border-[#51bc8f] border-t-transparent rounded-full animate-spin" />
+      </div>
+    }>
+      <AuditResultsContent />
+    </Suspense>
   );
 }
