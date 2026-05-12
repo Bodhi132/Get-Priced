@@ -248,7 +248,10 @@ export default function AuditPage() {
 
       // Store the audit results in sessionStorage for the results page
       if (typeof window !== 'undefined') {
-        sessionStorage.setItem('lastAuditResult', JSON.stringify(result.data));
+        sessionStorage.setItem('lastAuditResult', JSON.stringify({ 
+          ...result.data, 
+          auditId: result.auditId 
+        }));
       }
 
       // Redirect to the results page

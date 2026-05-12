@@ -26,6 +26,10 @@ export const metadata: Metadata = {
     title: 'GetPriced — Free AI Spend Audit for Startups',
     description: 'Find out if you\'re overpaying for AI tools. Free audit, 60 seconds, no credit card.',
   },
+  icons: {
+    icon: '/gpLogo.png',
+    apple: '/gpLogo.png',
+  },
 };
 
 export default function RootLayout({
@@ -34,7 +38,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="scroll-smooth">
+    <html lang="en" className="scroll-smooth" suppressHydrationWarning>
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />

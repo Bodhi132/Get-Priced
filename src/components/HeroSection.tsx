@@ -1,9 +1,9 @@
 'use client';
 
-import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
-import { useRef, useState } from 'react';
+import { motion, AnimatePresence, useMotionValue, useSpring, useTransform } from 'framer-motion';
+import { useRef, useState, useEffect } from 'react';
 import { EASE_OUT } from '@/lib/easing';
-import { Mail, ArrowRight, Sparkles, CheckCircle2, ShieldCheck, Zap, Users } from 'lucide-react';
+import { ArrowRight, Sparkles, CheckCircle2, ShieldCheck, Zap, Users } from 'lucide-react';
 import Link from 'next/link';
 
 const TOOLS = ['Cursor', 'Claude', 'ChatGPT', 'GitHub Copilot', 'Midjourney', 'Perplexity'];
@@ -11,26 +11,27 @@ const TOOLS = ['Cursor', 'Claude', 'ChatGPT', 'GitHub Copilot', 'Midjourney', 'P
 function RotatingWords() {
   const [index, setIndex] = useState(0);
 
-  // Auto-cycle
-  useState(() => {
+  useEffect(() => {
     const iv = setInterval(() => {
       setIndex((i) => (i + 1) % TOOLS.length);
     }, 2400);
     return () => clearInterval(iv);
-  });
+  }, []);
 
   return (
-    <span className="relative inline-block overflow-hidden h-[1.15em] align-bottom w-64 md:w-96">
-      <motion.span
-        key={index}
-        initial={{ y: 40, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        exit={{ y: -40, opacity: 0 }}
-        transition={{ duration: 0.45, ease: EASE_OUT }}
-        className="absolute left-0 bg-gradient-to-r from-[#51bc8f] to-emerald-400 bg-clip-text text-transparent font-extrabold pb-2"
-      >
-        {TOOLS[index]}
-      </motion.span>
+    <span className="relative inline-flex items-center overflow-hidden h-[1.4em] min-w-[350px] md:min-w-[650px] align-middle">
+      <AnimatePresence mode="wait">
+        <motion.span
+          key={index}
+          initial={{ y: 20, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          exit={{ y: -20, opacity: 0 }}
+          transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+          className="absolute left-0 bg-gradient-to-r from-[#51bc8f] to-emerald-400 bg-clip-text text-transparent font-extrabold whitespace-nowrap text-left"
+        >
+          {TOOLS[index]}
+        </motion.span>
+      </AnimatePresence>
     </span>
   );
 }
@@ -122,7 +123,7 @@ export default function HeroSection() {
       </motion.div>
 
       <motion.div
-        className="absolute right-[5%] top-[28%] hidden xl:block float-animation"
+        className="absolute right-[5%] top-[50%] hidden xl:block float-animation"
         style={{ animationDelay: '2s' }}
         initial={{ opacity: 0, x: 40 }}
         animate={{ opacity: 1, x: 0 }}
@@ -195,16 +196,15 @@ export default function HeroSection() {
           className="hero-headline text-5xl md:text-7xl font-extrabold text-gray-900 leading-tight tracking-tight mb-8"
           style={{ letterSpacing: '-0.02em' }}
         >
-          You&apos;re probably{' '}
-          <span className="relative inline-block">
-            <span className="bg-gradient-to-r from-[#51bc8f] to-emerald-400 bg-clip-text text-transparent pb-2">overpaying</span>
+          You&apos;re probably<span className="bg-gradient-to-r from-[#51bc8f] to-emerald-400 bg-clip-text text-transparent pb-2"> overpaying</span>
+          <div className="relative ">
             <motion.span
               className="absolute -bottom-1 left-0 right-0 h-0.5 bg-gradient-to-r from-[#51bc8f] to-emerald-400 rounded-full"
               initial={{ scaleX: 0 }}
               animate={{ scaleX: 1 }}
               transition={{ delay: 1, duration: 0.8 }}
             />
-          </span>{' '}
+          </div>{' '}
           for <RotatingWords />
         </motion.h1>
 
@@ -230,42 +230,22 @@ export default function HeroSection() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.6, ease: EASE_OUT }}
           className="relative w-full mx-auto group flex justify-center"
-          style={{ maxWidth: '680px' }}
+          style={{ maxWidth: '400px' }}
         >
           {/* Animated glow effect */}
           <div className="absolute -inset-1 bg-gradient-to-r from-[#51bc8f] via-emerald-400 to-teal-400 rounded-full blur-xl opacity-30 group-hover:opacity-50 transition duration-500 animate-pulse"></div>
 
-          {/* Container: rounded-full to ensure capsule shape */}
-          <div 
-            className="relative flex items-center bg-white border border-gray-200 rounded-full gap-3 w-full shadow-xl shadow-gray-200/50 backdrop-blur-xl transition-all duration-300 hover:border-[#51bc8f]/30"
-            style={{ padding: '12px 12px 12px 32px' }}
-          >
-
-            {/* Mail Icon Wrapper */}
-            <div className="text-gray-400 group-focus-within:text-[#51bc8f] transition-colors duration-300 flex-shrink-0 flex items-center">
-              <Mail strokeWidth={2} className="w-7 h-7" />
-            </div>
-
-            {/* Input */}
-            <input
-              type="email"
-              placeholder="Enter your work email..."
-              className="flex-1 bg-transparent text-gray-900 placeholder:text-gray-400 font-medium text-lg border-0 focus:ring-0 outline-none w-full"
-              style={{ padding: '16px 12px' }}
-            />
-
-            {/* Button */}
-            <Link href="/audit" className="group/btn">
-              <button 
-                className="bg-gray-900 text-white hover:bg-black transition-all duration-300 rounded-full text-lg font-extrabold whitespace-nowrap flex items-center justify-center gap-2 shadow-lg shadow-gray-900/20 hover:scale-[1.02] active:scale-[0.98]"
-                style={{ padding: '20px 40px' }}
-              >
-                <Sparkles className="w-6 h-6 text-[#51bc8f]" />
-                Get Free Audit
-                <ArrowRight strokeWidth={2.5} className="w-6 h-6 transition-transform duration-300 group-hover/btn:translate-x-1" />
-              </button>
-            </Link>
-          </div>
+          {/* Button Container */}
+          <Link href="/audit" className="relative w-full">
+            <button
+              className="w-full bg-gray-900 text-white hover:bg-black transition-all duration-300 rounded-full text-lg font-extrabold whitespace-nowrap flex items-center justify-center gap-3 shadow-xl shadow-gray-900/20 hover:scale-[1.02] active:scale-[0.98]"
+              style={{ padding: '24px 48px' }}
+            >
+              <Sparkles className="w-6 h-6 text-[#51bc8f]" />
+              Get Free Audit
+              <ArrowRight strokeWidth={2.5} className="w-6 h-6 transition-transform duration-300 group-hover:translate-x-1" />
+            </button>
+          </Link>
         </motion.div>
 
         {/* BOTTOM SPACER (Adjust this height to push the trust signals down) */}

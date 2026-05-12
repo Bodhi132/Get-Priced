@@ -2,8 +2,7 @@
 
 import { motion, useInView, AnimatePresence } from 'framer-motion';
 import { useRef, useState } from 'react';
-import { EASE_OUT } from '@/lib/easing';
-import { HelpCircle, Plus } from 'lucide-react';
+import { HelpCircle, Plus, Sparkles, ArrowRight } from 'lucide-react';
 
 const FAQS = [
   {
@@ -28,15 +27,15 @@ const FAQS = [
   },
   {
     q: "How often should I run an audit?",
-    a: "We recommend quarterly audits, or whenever you onboard new team members or tools. AI pricing changes frequently — a tool that was good value 6 months ago may be overpriced today. Our monthly digest email alerts you to significant price changes automatically.",
+    a: "We recommend quarterly audits, or whenever you onboard new team members or tools. AI pricing changes frequently — a tool that was good value 6 months ago may be overpriced today.",
   },
   {
     q: "Is my data safe?",
-    a: "We take privacy seriously. Your audit data is used only to generate your report and is not sold or shared. We are GDPR compliant, and all data is encrypted in transit and at rest. You can request deletion at any time.",
+    a: "We take privacy seriously. Your audit data is used only to generate your report and is not sold or shared. We are GDPR compliant, and all data is encrypted in transit and at rest.",
   },
   {
     q: "We're a 2-person startup — is this still useful?",
-    a: "Even more so. Small teams often pay for tools as individuals rather than teams, missing bulk discounts. GetPriced often finds savings of $50–200/month even for tiny teams — which matters a lot at the bootstrap stage.",
+    a: "Even more so. Small teams often pay for tools as individuals rather than teams, missing bulk discounts. GetPriced often finds savings of $50–200/month even for tiny teams.",
   },
 ];
 
@@ -55,30 +54,27 @@ function FAQItem({ q, a, index, isOpen, onToggle }: {
       ref={itemRef}
       initial={{ opacity: 0, y: 20 }}
       animate={inView ? { opacity: 1, y: 0 } : {}}
-      transition={{ delay: index * 0.07, duration: 0.5 }}
-      className={`glass-card rounded-2xl overflow-hidden transition-all duration-300 ${isOpen ? 'border-violet-500/30' : ''
+      transition={{ delay: index * 0.05, duration: 0.5 }}
+      className={`bg-white border rounded-[1.5rem] overflow-hidden transition-all duration-500 ${isOpen ? 'border-[#51bc8f]/50 shadow-xl shadow-emerald-900/5' : 'border-gray-100 shadow-sm'
         }`}
     >
       <button
         className="w-full flex items-center justify-between gap-6 text-left group"
-        style={{ padding: '32px' }}
+        style={{ padding: '24px 32px' }}
         onClick={onToggle}
         aria-expanded={isOpen}
-        id={`faq-btn-${index}`}
       >
-        <span className="text-gray-900 font-bold text-base md:text-lg pr-4 group-hover:text-violet-300 transition-colors">
+        <span className={`font-bold text-lg transition-colors duration-500 ${isOpen ? 'text-gray-900' : 'text-gray-600 group-hover:text-gray-900'}`}>
           {q}
         </span>
-        <motion.div
-          animate={{ rotate: isOpen ? 45 : 0 }}
-          transition={{ duration: 0.3, ease: EASE_OUT }}
-          className={`flex-shrink-0 w-8 h-8 rounded-full border-2 flex items-center justify-center transition-all duration-300 ${isOpen
-              ? 'bg-violet-500/20 border-violet-500/40 text-violet-300'
-              : 'border-black/10 text-gray-500 group-hover:border-black/20'
+        <div
+          className={`flex-shrink-0 w-8 h-8 rounded-xl border flex items-center justify-center transition-all duration-500 ${isOpen
+              ? 'bg-[#51bc8f] border-[#51bc8f] text-white rotate-45'
+              : 'border-gray-100 text-gray-400 group-hover:border-[#51bc8f] group-hover:text-[#51bc8f]'
             }`}
         >
-          <Plus className="w-4 h-4" />
-        </motion.div>
+          <Plus className="w-5 h-5" />
+        </div>
       </button>
 
       <AnimatePresence>
@@ -87,11 +83,11 @@ function FAQItem({ q, a, index, isOpen, onToggle }: {
             initial={{ height: 0, opacity: 0 }}
             animate={{ height: 'auto', opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.35, ease: EASE_OUT }}
+            transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
             className="overflow-hidden"
           >
             <p
-              className="text-gray-600 text-base leading-relaxed"
+              className="text-gray-500 text-base leading-relaxed font-medium"
               style={{ padding: '0 32px 32px 32px' }}
             >
               {a}
@@ -109,32 +105,29 @@ export default function FAQSection() {
   const inView = useInView(ref, { once: true, margin: '-60px' });
 
   return (
-    <section ref={ref} id="faq" className="centered-section relative py-24">
-      {/* BG accent */}
+    <section ref={ref} id="faq" className="relative py-32 bg-white overflow-hidden">
+      {/* Premium Background Elements */}
       <div className="absolute inset-0 pointer-events-none">
         <div
-          className="absolute bottom-0 right-0 w-[600px] h-[500px]"
-          style={{
-            background: 'radial-gradient(ellipse at bottom right, rgba(79,70,229,0.1) 0%, transparent 70%)',
-          }}
+          className="absolute bottom-[-10%] right-[-10%] w-[600px] h-[600px] bg-emerald-500/5 blur-[120px] rounded-full"
         />
       </div>
 
-      <div className="content-wrap--narrow relative z-10 flex flex-col gap-16 md:gap-24">
+      <div className="max-w-3xl mx-auto px-6 relative z-10 flex flex-col gap-16 md:gap-20">
         {/* Header */}
         <motion.div
-          initial={{ opacity: 0, y: 24 }}
+          initial={{ opacity: 0, y: 20 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
           className="text-center"
         >
-          <div className="inline-flex items-center gap-2 badge-pill rounded-full px-4 py-1.5 text-sm font-medium mb-5">
-            <HelpCircle className="w-4 h-4 text-violet-400" /> Common Questions
+          <div className="inline-flex items-center gap-2 px-4 py-2 bg-emerald-50 border border-emerald-100 rounded-full text-[#51bc8f] text-xs font-bold tracking-widest uppercase mb-6">
+            <HelpCircle className="w-4 h-4" /> Common Questions
           </div>
-          <h2 className="text-4xl md:text-5xl font-extrabold text-gray-900 mb-4 text-center" style={{ letterSpacing: '-0.02em' }}>
-            Answers to your <span className="gradient-text">real questions</span>
+          <h2 className="text-4xl md:text-6xl font-black text-gray-900 mb-6 tracking-tight">
+            Answers to your <span className="text-[#51bc8f]">real questions</span>
           </h2>
-          <p className="text-gray-600 text-lg text-center">
+          <p className="text-gray-500 text-lg md:text-xl leading-relaxed font-medium">
             Still skeptical? Good. We&apos;ll prove it.
           </p>
         </motion.div>
@@ -158,15 +151,24 @@ export default function FAQSection() {
           initial={{ opacity: 0, y: 20 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ delay: 0.5, duration: 0.6 }}
-          className="text-center glass-card rounded-3xl p-10 mt-[-2rem]"
+          className="bg-gray-50 border border-gray-100 rounded-[2.5rem] p-10 md:p-12 text-center shadow-sm"
         >
-          <p className="text-gray-600 text-base md:text-lg mb-3 font-medium">Still have questions?</p>
-          <a
-            href="mailto:hello@getpriced.ai"
-            className="text-violet-400 hover:text-violet-300 text-base md:text-lg font-bold transition-colors underline underline-offset-4"
-          >
-            Email us at hello@getpriced.ai →
-          </a>
+          <div className="flex flex-col items-center gap-6">
+            <div className="w-12 h-12 bg-white rounded-2xl flex items-center justify-center shadow-sm border border-gray-100">
+              <Sparkles className="w-6 h-6 text-[#51bc8f]" />
+            </div>
+            <div>
+              <p className="text-gray-900 text-xl font-black mb-2 tracking-tight">Still have questions?</p>
+              <p className="text-gray-500 font-medium mb-6">We're here to help you optimize your runway.</p>
+              <a
+                href="mailto:hello@getpriced.ai"
+                className="inline-flex items-center gap-2 text-[#51bc8f] hover:text-[#3da17a] font-black text-lg transition-all group"
+              >
+                Email us at hello@getpriced.ai
+                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+              </a>
+            </div>
+          </div>
         </motion.div>
       </div>
     </section>

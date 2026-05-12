@@ -2,137 +2,88 @@
 
 import { motion, useInView } from 'framer-motion';
 import { useRef } from 'react';
-import { EASE_OUT } from '@/lib/easing';
-import { Mail, ArrowRight, Lock, ShieldCheck, Zap, Users, CheckCircle2 } from 'lucide-react';
+import { ArrowRight, Lock, ShieldCheck, Zap, Users, Sparkles } from 'lucide-react';
 import Link from 'next/link';
 
 export default function CTASection() {
   const ref = useRef<HTMLElement>(null);
-  const inView = useInView(ref, { once: true, margin: '-60px' });
+  const inView = useInView(ref, { once: true, margin: '-100px' });
 
   return (
-    <section ref={ref} id="final-cta" className="centered-section relative overflow-hidden" style={{ margin: '96px 0', padding: '64px 0' }}>
-      {/* Orb glow */}
-      <div className="absolute inset-0 pointer-events-none">
-        <div
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[500px] rounded-full"
-          style={{
-            background: 'radial-gradient(ellipse at center, rgba(124,58,237,0.22) 0%, rgba(79,70,229,0.08) 50%, transparent 75%)',
-            filter: 'blur(50px)',
-          }}
-        />
+    <section ref={ref} id="final-cta" className="relative py-32 px-6 overflow-hidden bg-white">
+      {/* Ambient background glows for depth without a container */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden">
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1000px] h-[600px] bg-[#51bc8f]/5 blur-[120px] rounded-full" />
       </div>
 
-      <div className="content-wrap--medium relative z-10">
-        {/* Bordered gradient card */}
+      <div className="max-w-4xl mx-auto relative z-10 flex flex-col items-center text-center">
+        {/* Security Badge */}
         <motion.div
-          initial={{ opacity: 0, scale: 0.97, y: 30 }}
-          animate={inView ? { opacity: 1, scale: 1, y: 0 } : {}}
-          transition={{ duration: 0.7, ease: EASE_OUT }}
-          className="rounded-3xl p-px"
-          style={{
-            background: 'linear-gradient(135deg, rgba(124,58,237,0.6) 0%, rgba(79,70,229,0.4) 50%, rgba(37,99,235,0.4) 100%)',
-          }}
+          initial={{ opacity: 0, y: 10 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ delay: 0.2, duration: 0.6 }}
+          className="inline-flex items-center gap-2 px-4 py-2 bg-emerald-50 border border-emerald-100 rounded-full text-[#51bc8f] text-xs font-bold tracking-widest uppercase mb-10"
         >
-          <div
-            className="rounded-[23px] px-6 md:px-16 py-20 md:py-28 flex flex-col items-center justify-center text-center relative overflow-hidden"
-            style={{ background: 'linear-gradient(135deg, #ffffff 0%, #f9fafb 100%)' }}
-          >
-            {/* Lock / Security badge */}
-            <motion.div
-              initial={{ opacity: 0, y: 16 }}
-              animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ delay: 0.2, duration: 0.5 }}
-              className="inline-flex items-center gap-2 bg-black/[0.03] border border-black/[0.08] text-gray-700 rounded-full px-5 py-2 text-sm font-semibold mb-10 backdrop-blur-md"
-            >
-              <Lock className="w-4 h-4 text-violet-400" />
-              Secure, free forever, and zero spam
-            </motion.div>
+          <Lock className="w-3.5 h-3.5" />
+          Secure, free forever, and zero spam
+        </motion.div>
 
-            <motion.h2
-              initial={{ opacity: 0, y: 20 }}
-              animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ delay: 0.3, duration: 0.6 }}
-              className="text-5xl md:text-7xl font-extrabold text-gray-900 mb-6 text-center tracking-tight"
-              style={{ lineHeight: '1.1' }}
-            >
-              Stop bleeding money
-              <br className="hidden md:block" />
-              on <span className="gradient-text">AI tools you don&apos;t need.</span>
-            </motion.h2>
+        <motion.h2
+          initial={{ opacity: 0, y: 20 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ delay: 0.3, duration: 0.6 }}
+          className="text-5xl md:text-8xl font-black text-gray-900 mb-8 tracking-tighter leading-[0.9]"
+        >
+          Stop bleeding money on <span className="text-[#51bc8f]">AI tools.</span>
+        </motion.h2>
 
-            <motion.p
-              initial={{ opacity: 0, y: 16 }}
-              animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ delay: 0.45, duration: 0.6 }}
-              className="text-gray-600 text-xl md:text-2xl max-w-3xl mx-auto leading-relaxed font-medium"
-            >
-              Join 3,200+ founders who ran a free audit and recovered an average of{' '}
-              <span className="text-gray-900 font-bold">$1,240/year</span> per team.
-            </motion.p>
+        <motion.p
+          initial={{ opacity: 0, y: 10 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ delay: 0.4, duration: 0.6 }}
+          className="text-gray-500 text-lg md:text-2xl max-w-2xl mx-auto mb-16 font-medium leading-relaxed"
+        >
+          Join 3,200+ founders who ran a free audit and recovered an average of{' '}
+          <span className="text-gray-900 font-black">$1,240/year</span> per team.
+        </motion.p>
 
-            {/* Email CTA */}
-            <motion.div
-              initial={{ opacity: 0, y: 16 }}
-              animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ delay: 0.55, duration: 0.6 }}
-              className="relative flex justify-center w-full max-w-2xl mx-auto"
-              style={{ marginTop: '64px', marginBottom: '80px' }}
-            >
-              {/* Animated glow effect */}
-              <div className="absolute -inset-1 bg-gradient-to-r from-violet-600 via-indigo-600 to-emerald-500 rounded-3xl blur-xl opacity-50 group-hover:opacity-75 transition duration-500 animate-pulse"></div>
+        {/* Single Action Button */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ delay: 0.5, duration: 0.8 }}
+          className="flex justify-center w-full mb-20"
+        >
+          <Link href="/audit">
+            <button className="px-12 py-6 bg-[#51bc8f] text-white rounded-[1.5rem] font-black text-xl hover:bg-[#3da17a] transition-all hover:scale-105 active:scale-95 flex items-center justify-center gap-3 shadow-2xl shadow-[#51bc8f]/30">
+              Run Free Audit
+              <ArrowRight className="w-6 h-6" />
+            </button>
+          </Link>
+        </motion.div>
 
-              <div 
-                className="relative flex flex-col sm:flex-row items-center bg-gray-50 border border-black/10 rounded-3xl gap-4 w-full shadow-2xl backdrop-blur-xl"
-                style={{ padding: '16px 24px' }}
-              >
-                <div className="hidden sm:flex pl-2 text-gray-500">
-                  <Mail className="w-6 h-6" />
-                </div>
-                <input
-                  type="email"
-                  placeholder="Enter your work email..."
-                  className="flex-1 w-full bg-transparent text-gray-900 placeholder:text-gray-500 text-lg py-4 rounded-xl border-0 focus:ring-0 outline-none"
-                  style={{ paddingLeft: '8px', paddingRight: '16px' }}
-                  id="cta-email-input"
-                />
-                <Link href="/audit" className="w-full sm:w-auto">
-                  <button
-                    className="w-full bg-gray-900 text-white hover:bg-gray-800 transition-colors rounded-[20px] text-lg font-extrabold whitespace-nowrap flex items-center justify-center gap-2 shadow-lg shadow-black/10"
-                    style={{ padding: '20px 40px' }}
-                    id="cta-audit-btn"
-                  >
-                    Get Free Audit
-                    <ArrowRight className="w-5 h-5" />
-                  </button>
-                </Link>
-              </div>
-            </motion.div>
-
-            {/* Trust row */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={inView ? { opacity: 1 } : {}}
-              transition={{ delay: 0.7, duration: 0.6 }}
-              className="flex flex-wrap items-center justify-center gap-x-8 gap-y-4 text-sm font-semibold"
-            >
-              <div className="flex items-center gap-2 text-gray-600">
-                <ShieldCheck className="w-5 h-5 text-emerald-400" />
-                <span>No data sold. Ever.</span>
-              </div>
-              <div className="flex items-center gap-2 text-gray-600">
-                <Zap className="w-5 h-5 text-amber-400" />
-                <span>60-second audit</span>
-              </div>
-              <div className="flex items-center gap-2 text-gray-600">
-                <Users className="w-5 h-5 text-blue-400" />
-                <span>3,200+ founders</span>
-              </div>
-              <div className="flex items-center gap-2 text-gray-600">
-                <CheckCircle2 className="w-5 h-5 text-violet-400" />
-                <span>Free forever</span>
-              </div>
-            </motion.div>
+        {/* Trust Badges */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={inView ? { opacity: 1 } : {}}
+          transition={{ delay: 0.7, duration: 0.8 }}
+          className="flex flex-wrap items-center justify-center gap-x-8 gap-y-6"
+        >
+          <div className="flex items-center gap-2 text-gray-400 group cursor-default">
+            <ShieldCheck className="w-4 h-4 text-[#51bc8f]" />
+            <span className="text-[10px] uppercase tracking-widest font-black group-hover:text-gray-900 transition-colors">No data sold</span>
+          </div>
+          <div className="flex items-center gap-2 text-gray-400 group cursor-default">
+            <Zap className="w-4 h-4 text-[#51bc8f]" />
+            <span className="text-[10px] uppercase tracking-widest font-black group-hover:text-gray-900 transition-colors">60s Audit</span>
+          </div>
+          <div className="flex items-center gap-2 text-gray-400 group cursor-default">
+            <Users className="w-4 h-4 text-[#51bc8f]" />
+            <span className="text-[10px] uppercase tracking-widest font-black group-hover:text-gray-900 transition-colors">3,200+ founders</span>
+          </div>
+          <div className="flex items-center gap-2 text-gray-400 group cursor-default">
+            <Sparkles className="w-4 h-4 text-[#51bc8f]" />
+            <span className="text-[10px] uppercase tracking-widest font-black group-hover:text-gray-900 transition-colors">Free Forever</span>
           </div>
         </motion.div>
       </div>

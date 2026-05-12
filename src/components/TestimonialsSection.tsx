@@ -1,9 +1,8 @@
 'use client';
 
 import { motion, useInView } from 'framer-motion';
-import { useRef, useState } from 'react';
-import { EASE_OUT } from '@/lib/easing';
-import { MessageSquareQuote, Star, ArrowRight, Wand2 } from 'lucide-react';
+import { useRef } from 'react';
+import { MessageSquareQuote, Star, ArrowRight, Sparkles } from 'lucide-react';
 
 const TESTIMONIALS = [
   {
@@ -14,7 +13,6 @@ const TESTIMONIALS = [
     company: 'Reflow AI',
     stage: 'Series A · 28 engineers',
     avatar: 'AM',
-    avatarGrad: 'from-violet-500 to-purple-600',
     saved: '$4,320/yr',
     tools: ['Midjourney', 'Cursor'],
     stars: 5,
@@ -27,7 +25,6 @@ const TESTIMONIALS = [
     company: 'LayerKit',
     stage: 'Seed · 8 engineers',
     avatar: 'PN',
-    avatarGrad: 'from-pink-500 to-rose-500',
     saved: '$1,680/yr',
     tools: ['ChatGPT Plus', 'GitHub Copilot'],
     stars: 5,
@@ -40,7 +37,6 @@ const TESTIMONIALS = [
     company: 'Dispatch Cloud',
     stage: 'Series B · 55 engineers',
     avatar: 'MW',
-    avatarGrad: 'from-blue-500 to-cyan-500',
     saved: '$10,680/yr',
     tools: ['Perplexity Pro', 'Claude Pro', 'Jasper'],
     stars: 5,
@@ -53,7 +49,6 @@ const TESTIMONIALS = [
     company: 'Vanta Ops',
     stage: 'Seed · 12 engineers',
     avatar: 'SR',
-    avatarGrad: 'from-amber-400 to-orange-500',
     saved: '$2,040/yr',
     tools: ['Notion AI', 'Cursor Pro'],
     stars: 5,
@@ -66,7 +61,6 @@ const TESTIMONIALS = [
     company: 'Skiper.dev',
     stage: 'Bootstrapped · 2 engineers',
     avatar: 'TG',
-    avatarGrad: 'from-emerald-400 to-teal-500',
     saved: '$720/yr',
     tools: ['Jasper', 'Copy.ai'],
     stars: 5,
@@ -79,7 +73,6 @@ const TESTIMONIALS = [
     company: 'Nimbus Data',
     stage: 'Series A · 34 engineers',
     avatar: 'LF',
-    avatarGrad: 'from-indigo-400 to-violet-500',
     saved: '$6,480/yr',
     tools: ['GitHub Copilot', 'Claude Pro', 'Perplexity'],
     stars: 5,
@@ -90,7 +83,7 @@ function StarRating({ count }: { count: number }) {
   return (
     <div className="flex gap-1">
       {Array.from({ length: count }).map((_, i) => (
-        <Star key={i} className="w-4 h-4 fill-amber-400 text-amber-400 drop-shadow-sm" />
+        <Star key={i} className="w-3.5 h-3.5 fill-[#51bc8f] text-[#51bc8f]" />
       ))}
     </div>
   );
@@ -99,38 +92,32 @@ function StarRating({ count }: { count: number }) {
 export default function TestimonialsSection() {
   const ref = useRef<HTMLElement>(null);
   const inView = useInView(ref, { once: true, margin: '-80px' });
-  const [activeIdx, setActiveIdx] = useState<number | null>(null);
 
   return (
-    <section ref={ref} id="testimonials" className="centered-section relative py-24 overflow-hidden">
-      {/* BG decoration */}
+    <section ref={ref} id="testimonials" className="relative py-32 bg-[#f8f9fb] overflow-hidden">
+      {/* Premium Background Elements */}
       <div className="absolute inset-0 pointer-events-none">
         <div
-          className="absolute top-0 left-1/4 w-[700px] h-[400px]"
-          style={{
-            background: 'radial-gradient(ellipse at center, rgba(124,58,237,0.08) 0%, transparent 70%)',
-            filter: 'blur(60px)',
-          }}
+          className="absolute top-1/4 left-1/4 w-[800px] h-[500px] bg-[#51bc8f]/5 blur-[120px] rounded-full"
         />
       </div>
 
-      <div className="content-wrap relative z-10 flex flex-col gap-24">
+      <div className="max-w-7xl mx-auto px-6 relative z-10">
         {/* Section header */}
         <motion.div
-          initial={{ opacity: 0, y: 24 }}
+          initial={{ opacity: 0, y: 20 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="text-center"
+          className="text-center mb-24"
         >
-          <div className="inline-flex items-center gap-2 badge-pill rounded-full px-4 py-1.5 text-sm font-medium mb-5">
-            <MessageSquareQuote className="w-4 h-4 text-violet-400" /> Founder Stories
+          <div className="inline-flex items-center gap-2 px-4 py-2 bg-emerald-50 border border-emerald-100 rounded-full text-[#51bc8f] text-xs font-bold tracking-widest uppercase mb-6">
+            <MessageSquareQuote className="w-4 h-4" /> Founder Stories
           </div>
-          <h2 className="text-4xl md:text-5xl font-extrabold text-gray-900 mb-4 text-center" style={{ letterSpacing: '-0.02em' }}>
-            Real savings from{' '}
-            <span className="gradient-text">real founders</span>
+          <h2 className="text-4xl md:text-6xl font-black text-gray-900 mb-6 tracking-tight">
+            Real savings from <span className="text-[#51bc8f]">real founders</span>
           </h2>
-          <p className="text-gray-600 text-lg max-w-xl mx-auto text-center">
-            Every testimonial below represents a real audit. Names and companies are from our beta cohort.
+          <p className="text-gray-500 text-lg md:text-xl max-w-xl mx-auto leading-relaxed">
+            Every testimonial below represents a real audit. Join thousands of teams cutting waste today.
           </p>
         </motion.div>
 
@@ -141,102 +128,87 @@ export default function TestimonialsSection() {
               key={t.name}
               initial={{ opacity: 0, y: 30 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ delay: i * 0.09, duration: 0.6, ease: EASE_OUT }}
-              className="glass-card rounded-3xl group hover:border-violet-500/30 transition-all duration-300 cursor-default flex flex-col shadow-xl shadow-black/20"
-              style={{ padding: '40px' }}
-              onMouseEnter={() => setActiveIdx(i)}
-              onMouseLeave={() => setActiveIdx(null)}
+              transition={{ delay: i * 0.1, duration: 0.6 }}
+              className="bg-white border border-gray-100 rounded-[2.5rem] p-10 flex flex-col shadow-sm hover:shadow-2xl hover:shadow-emerald-900/5 transition-all duration-500 group"
             >
-              {/* Stars */}
               <StarRating count={t.stars} />
 
-              {/* Quote */}
-              <blockquote className="text-gray-900 text-base leading-relaxed my-6 flex-1 font-medium">
+              <blockquote className="text-gray-900 text-lg leading-relaxed my-8 flex-1 font-medium italic">
                 &ldquo;{t.quote}&rdquo;
               </blockquote>
 
-              {/* Tools mentioned */}
-              <div className="flex flex-wrap gap-2 mb-6">
+              <div className="flex flex-wrap gap-2 mb-8">
                 {t.tools.map((tool) => (
                   <span
                     key={tool}
-                    className="text-xs font-semibold text-gray-600 bg-black/[0.04] border border-black/[0.08] px-3 py-1 rounded-full"
+                    className="text-[10px] uppercase tracking-widest font-black px-3 py-1.5 rounded-lg bg-gray-50 text-gray-400 border border-gray-100 group-hover:bg-emerald-50 group-hover:text-[#51bc8f] group-hover:border-emerald-100 transition-colors"
                   >
                     {tool}
                   </span>
                 ))}
               </div>
 
-              {/* Divider */}
-              <div className="h-px bg-black/[0.08] mb-6 w-full" />
+              <div className="h-px bg-gray-100 mb-8 w-full" />
 
-              {/* Author */}
-              <div className="flex items-center justify-between mt-auto">
+              <div className="flex items-center justify-between">
                 <div className="flex items-center gap-4">
-                  <div
-                    className={`w-11 h-11 rounded-full bg-gradient-to-br ${t.avatarGrad} flex items-center justify-center text-sm font-bold text-white shadow-md`}
-                  >
+                  <div className="w-12 h-12 rounded-2xl bg-emerald-50 border border-emerald-100 flex items-center justify-center text-sm font-black text-[#51bc8f]">
                     {t.avatar}
                   </div>
                   <div>
-                    <div className="text-gray-900 text-base font-bold">{t.name}</div>
-                    <div className="text-gray-600 text-xs font-medium mt-0.5">{t.title} · {t.company}</div>
+                    <div className="text-gray-900 font-black text-sm">{t.name}</div>
+                    <div className="text-gray-400 text-[10px] font-bold uppercase tracking-widest mt-1">{t.company}</div>
                   </div>
                 </div>
                 <div className="text-right">
-                  <div className="text-emerald-400 text-base font-extrabold">{t.saved}</div>
-                  <div className="text-gray-500 text-xs font-medium mt-0.5">{t.stage}</div>
+                  <div className="text-[#51bc8f] font-black text-sm">{t.saved}</div>
+                  <div className="text-gray-400 text-[10px] font-bold uppercase tracking-widest mt-1">Saved</div>
                 </div>
               </div>
             </motion.div>
           ))}
         </div>
 
-        {/* Placeholder CTA for more testimonials */}
+        {/* Bottom CTA Banner */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 40 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ delay: 0.6, duration: 0.6 }}
-          className="relative rounded-3xl overflow-hidden p-[1px]"
-          style={{ background: 'linear-gradient(135deg, rgba(124,58,237,0.5), rgba(37,99,235,0.2))' }}
+          transition={{ delay: 0.6, duration: 0.8 }}
+          className="mt-24"
         >
-          {/* Inner Glow */}
-          <div 
-            className="absolute inset-0 opacity-30 pointer-events-none"
-            style={{ background: 'radial-gradient(circle at 50% 0%, rgba(124,58,237,0.4) 0%, transparent 70%)' }}
-          />
-          
-          <div 
-            className="relative bg-white/95 backdrop-blur-2xl rounded-[23px] flex flex-col lg:flex-row items-center justify-between gap-10"
-            style={{ padding: '48px 56px' }}
-          >
-            <div className="flex-1 text-center lg:text-left">
-              <h3 className="text-3xl md:text-4xl font-extrabold text-gray-900 mb-4 tracking-tight">
+          <div className="bg-white border border-gray-100 rounded-[3rem] p-10 md:p-20 flex flex-col lg:flex-row items-center justify-between gap-12 relative overflow-hidden shadow-2xl shadow-emerald-900/5">
+            <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-emerald-500/5 blur-[100px] rounded-full pointer-events-none" />
+            
+            <div className="flex-1 text-center lg:text-left relative z-10">
+              <h3 className="text-3xl md:text-5xl font-black text-gray-900 mb-6 tracking-tight">
                 Your story could be next.
               </h3>
-              <p className="text-gray-600 text-lg max-w-xl mx-auto lg:mx-0 leading-relaxed">
-                Run your free audit and join <span className="text-gray-900 font-semibold">3,200+ founders</span> who discovered they were overpaying for AI tools.
+              <p className="text-gray-500 text-lg md:text-xl max-w-xl mx-auto lg:mx-0 leading-relaxed font-medium">
+                Join <span className="text-gray-900 font-black">3,200+ founders</span> who discovered they were overpaying for AI tools. Run your audit in 2 minutes.
               </p>
             </div>
             
-            <div className="flex-shrink-0 flex flex-col items-center lg:items-end gap-5">
+            <div className="flex-shrink-0 relative z-10">
               <a
-                href="#cta"
-                className="btn-primary inline-flex items-center gap-3 px-10 py-4 rounded-xl font-bold text-gray-900 text-lg hover:-translate-y-1 transition-transform shadow-xl shadow-violet-500/25"
+                href="#audit-start"
+                className="inline-flex items-center gap-3 px-10 py-5 bg-gray-900 text-white rounded-2xl font-black text-lg hover:bg-black transition-all hover:scale-[1.02] shadow-xl shadow-gray-900/10"
               >
-                Start My Free Audit <ArrowRight className="w-5 h-5" />
+                Start Free Audit
+                <ArrowRight className="w-5 h-5 text-[#51bc8f]" />
               </a>
               
-              <div className="flex items-center gap-3">
+              <div className="mt-6 flex items-center justify-center lg:justify-end gap-3">
                 <div className="flex -space-x-3">
-                  <div className="w-8 h-8 rounded-full bg-gradient-to-br from-violet-500 to-purple-500 border-2 border-white" />
-                  <div className="w-8 h-8 rounded-full bg-gradient-to-br from-amber-400 to-orange-500 border-2 border-white" />
-                  <div className="w-8 h-8 rounded-full bg-gradient-to-br from-emerald-400 to-teal-500 border-2 border-white" />
-                  <div className="w-8 h-8 rounded-full bg-black/10 border-2 border-white flex items-center justify-center text-[10px] font-bold text-gray-900 backdrop-blur-md">
+                  {[1, 2, 3].map((i) => (
+                    <div key={i} className="w-8 h-8 rounded-full bg-emerald-100 border-2 border-white flex items-center justify-center">
+                      <Sparkles className="w-4 h-4 text-[#51bc8f]" />
+                    </div>
+                  ))}
+                  <div className="w-8 h-8 rounded-full bg-gray-900 border-2 border-white flex items-center justify-center text-[10px] font-black text-white">
                     +3k
                   </div>
                 </div>
-                <span className="text-gray-500 text-sm font-medium">Join the beta</span>
+                <span className="text-gray-400 text-xs font-bold uppercase tracking-widest">Join the cohort</span>
               </div>
             </div>
           </div>

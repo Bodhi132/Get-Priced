@@ -1,57 +1,75 @@
 'use client';
 import Link from 'next/link';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, Shield, Mail, Globe } from 'lucide-react';
+import Image from 'next/image';
 
 export default function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="relative border-t border-black/[0.08] py-16 md:py-24">
-      {/* Top glow */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-2xl h-[1px] bg-gradient-to-r from-transparent via-violet-500/50 to-transparent" />
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-md h-[400px] bg-violet-500/10 blur-[120px] pointer-events-none" />
-
-      <div className="content-wrap relative z-10">
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-16 lg:gap-8">
-          {/* Logo & Tagline (Left Side) */}
-          <div className="md:col-span-5 lg:col-span-4 flex flex-col gap-6">
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-violet-500 to-indigo-600 flex items-center justify-center shadow-lg shadow-violet-500/20">
-                <svg width="20" height="20" viewBox="0 0 16 16" fill="none">
-                  <path d="M8 1L14 4.5V11.5L8 15L2 11.5V4.5L8 1Z" fill="#111827" fillOpacity="0.9"/>
-                  <path d="M8 4L11.5 6V10L8 12L4.5 10V6L8 4Z" fill="#111827" fillOpacity="0.4"/>
-                </svg>
+    <footer className="relative bg-white border-t border-gray-100 pt-32 pb-16">
+      {/* Top ambient glow */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-4xl h-[1px] bg-gradient-to-r from-transparent via-[#51bc8f]/30 to-transparent" />
+      
+      <div className="max-w-7xl mx-auto px-6 relative z-10">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-20 lg:gap-12 mb-24">
+          {/* Logo & Vision Block */}
+          <div className="md:col-span-12 lg:col-span-5 flex flex-col gap-8">
+            <Link href="/" className="flex items-center gap-3 group">
+              <div className="relative w-12 h-12 rounded-2xl flex items-center justify-center group-hover:rotate-6 transition-transform duration-500 overflow-hidden">
+                <Image 
+                  src="/gpLogo.png" 
+                  alt="getPriced Logo" 
+                  fill
+                  className="object-contain"
+                />
               </div>
-              <span className="font-extrabold text-2xl text-gray-900 tracking-tight" style={{ fontFamily: 'Space Grotesk, sans-serif' }}>
-                Get<span className="gradient-text">Priced</span>
+              <span className="font-black text-3xl text-gray-900 tracking-tighter">
+                getPriced
               </span>
-            </div>
-            <p className="text-gray-600 text-base leading-relaxed pr-4">
-              Stop overpaying for AI. Audit your SaaS stack in minutes and save thousands on overlapping tools.
+            </Link>
+            <p className="text-gray-500 text-lg leading-relaxed max-w-md font-medium">
+              Stop overpaying for AI. We help high-performance teams audit their SaaS stack and recover thousands in wasted subscriptions.
             </p>
+            <div className="flex items-center gap-6">
+              <div className="flex items-center gap-2 text-gray-400 group cursor-default">
+                <Shield className="w-4 h-4 text-[#51bc8f]" />
+                <span className="text-[10px] uppercase tracking-widest font-black group-hover:text-gray-900 transition-colors">Privacy First</span>
+              </div>
+              <div className="flex items-center gap-2 text-gray-400 group cursor-default">
+                <Globe className="w-4 h-4 text-[#51bc8f]" />
+                <span className="text-[10px] uppercase tracking-widest font-black group-hover:text-gray-900 transition-colors">Global DB</span>
+              </div>
+            </div>
           </div>
 
-          {/* Links (Right Side) */}
-          <div className="md:col-span-7 lg:col-span-8 grid grid-cols-2 sm:grid-cols-3 gap-10 sm:gap-8">
-            <div className="flex flex-col gap-4">
-              <h4 className="text-gray-900 font-semibold text-base mb-2">Product</h4>
-              <a href="#features" className="text-gray-600 hover:text-gray-900 transition-colors text-sm font-medium">Features</a>
-              <a href="#social-proof" className="text-gray-600 hover:text-gray-900 transition-colors text-sm font-medium">Savings Data</a>
-              <a href="#testimonials" className="text-gray-600 hover:text-gray-900 transition-colors text-sm font-medium">Founder Stories</a>
-              <a href="#faq" className="text-gray-600 hover:text-gray-900 transition-colors text-sm font-medium">FAQ</a>
-            </div>
-            
-            <div className="flex flex-col gap-4">
-              <h4 className="text-gray-900 font-semibold text-base mb-2">Company</h4>
-              <a href="mailto:hello@getpriced.ai" className="text-gray-600 hover:text-gray-900 transition-colors text-sm font-medium">Contact Us</a>
-              <a href="#" className="text-gray-600 hover:text-gray-900 transition-colors text-sm font-medium">Privacy Policy</a>
-              <a href="#" className="text-gray-600 hover:text-gray-900 transition-colors text-sm font-medium">Terms of Service</a>
-            </div>
+          {/* Quick Navigation */}
+          <div className="md:col-span-4 lg:col-span-2 flex flex-col gap-6">
+            <h4 className="text-gray-900 font-black text-xs uppercase tracking-widest">Product</h4>
+            <ul className="flex flex-col gap-4">
+              <li><a href="#features" className="text-gray-500 hover:text-[#51bc8f] transition-colors font-bold text-sm">Audit Features</a></li>
+              <li><a href="#social-proof" className="text-gray-500 hover:text-[#51bc8f] transition-colors font-bold text-sm">Savings Data</a></li>
+              <li><a href="#testimonials" className="text-gray-500 hover:text-[#51bc8f] transition-colors font-bold text-sm">Founder Stories</a></li>
+              <li><a href="#faq" className="text-gray-500 hover:text-[#51bc8f] transition-colors font-bold text-sm">Common Questions</a></li>
+            </ul>
+          </div>
 
-            <div className="flex flex-col gap-4 col-span-2 sm:col-span-1">
-              <h4 className="text-gray-900 font-semibold text-base mb-2">Ready to save?</h4>
+          {/* Support & Legal */}
+          <div className="md:col-span-4 lg:col-span-2 flex flex-col gap-6">
+            <h4 className="text-gray-900 font-black text-xs uppercase tracking-widest">Connect</h4>
+            <ul className="flex flex-col gap-4">
+              <li><a href="mailto:hello@getpriced.ai" className="text-gray-500 hover:text-[#51bc8f] transition-colors font-bold text-sm flex items-center gap-2"><Mail className="w-4 h-4" /> Support</a></li>
+              <li><a href="#" className="text-gray-500 hover:text-[#51bc8f] transition-colors font-bold text-sm">Privacy Policy</a></li>
+              <li><a href="#" className="text-gray-500 hover:text-[#51bc8f] transition-colors font-bold text-sm">Terms of Service</a></li>
+            </ul>
+          </div>
+
+          {/* Final Action */}
+          <div className="md:col-span-4 lg:col-span-3">
+            <div className="bg-gray-50 border border-gray-100 rounded-3xl p-8 flex flex-col gap-6">
+              <p className="text-gray-900 font-black text-sm">Ready to optimize?</p>
               <Link href="/audit">
-                <button className="bg-gray-900 text-white hover:bg-gray-800 transition-colors px-6 py-2.5 rounded-xl text-sm font-bold flex items-center justify-center gap-2 w-full mt-2">
+                <button className="w-full bg-[#51bc8f] text-white py-4 rounded-xl font-black text-sm hover:bg-[#3da17a] transition-all flex items-center justify-center gap-2 shadow-lg shadow-emerald-900/10">
                   Run Free Audit
                   <ArrowRight className="w-4 h-4" />
                 </button>
@@ -61,11 +79,16 @@ export default function Footer() {
         </div>
 
         {/* Bottom bar */}
-        <div className="mt-20 pt-8 border-t border-black/[0.06] flex flex-col md:flex-row items-center justify-between gap-6 text-sm text-gray-500 font-medium">
-          <p>© {year} GetPriced. All rights reserved.</p>
-          <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-white/[0.02] border border-white/[0.04]">
-            <span className="w-2 h-2 rounded-full bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.5)] animate-pulse" />
-            <span className="text-gray-600 text-xs tracking-wide">SYSTEMS OPERATIONAL</span>
+        <div className="pt-12 border-t border-gray-100 flex flex-col md:flex-row items-center justify-between gap-8">
+          <p className="text-gray-400 text-xs font-bold uppercase tracking-widest">
+            © {year} getPriced • Built for Founders
+          </p>
+          
+          <div className="flex items-center gap-4">
+            <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-50 border border-emerald-100">
+              <span className="w-2 h-2 rounded-full bg-[#51bc8f] animate-pulse" />
+              <span className="text-[#51bc8f] text-[10px] font-black tracking-widest uppercase">System Operational</span>
+            </div>
           </div>
         </div>
       </div>
