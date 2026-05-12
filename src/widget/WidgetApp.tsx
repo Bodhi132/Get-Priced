@@ -63,7 +63,7 @@ export default function WidgetApp() {
     });
 
     try {
-      const response = await fetch('http://localhost:5000/api/audit', {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000'}/api/audit`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ tools: payload }),
@@ -75,7 +75,7 @@ export default function WidgetApp() {
       setResults(result.data);
       
       // Also capture lead
-      await fetch('http://localhost:5000/api/leads', {
+      await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000'}/api/leads`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({

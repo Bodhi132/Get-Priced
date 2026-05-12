@@ -26,7 +26,8 @@ interface AuditData {
 async function getAuditData(id: string): Promise<AuditData | null> {
   try {
     // Using 127.0.0.1 to avoid IPv6 resolution issues on some local setups
-    const res = await fetch(`http://127.0.0.1:5000/api/audit/${id}`, { cache: 'no-store' });
+    const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://127.0.0.1:5000';
+    const res = await fetch(`${apiUrl}/api/audit/${id}`, { cache: 'no-store' });
     if (!res.ok) return null;
     const json = await res.json();
     return json.data;
