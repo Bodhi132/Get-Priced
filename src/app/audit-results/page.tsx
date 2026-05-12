@@ -211,24 +211,7 @@ function AuditResultsContent() {
             Download PDF
           </button>
 
-          {auditId && (
-            <button
-              onClick={handleShare}
-              className="flex items-center gap-2 px-4 py-2 bg-white border border-gray-200 rounded-xl text-sm font-bold text-gray-700 hover:bg-gray-50 transition-all shadow-sm"
-            >
-              {isCopied ? (
-                <>
-                  <CheckCircle2 className="w-4 h-4 text-[#51bc8f]" />
-                  Link Copied!
-                </>
-              ) : (
-                <>
-                  <Share2 className="w-4 h-4" />
-                  Share Report
-                </>
-              )}
-            </button>
-          )}
+          {/* Sharing feature removed as per request */}
           <div className="flex items-center gap-2">
             <div className="relative w-8 h-8 rounded-lg flex items-center justify-center overflow-hidden">
               <Image
@@ -285,42 +268,7 @@ function AuditResultsContent() {
             </div>
           </motion.section>
 
-          {auditId && (
-            <motion.section
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.8 }}
-              className="mb-20 no-pdf"
-            >
-              <div className="bg-white border border-gray-100 rounded-2xl p-4 flex flex-col sm:flex-row items-center gap-4 shadow-sm">
-                <div className="flex items-center gap-3 px-3 py-2 bg-gray-50 rounded-lg border border-gray-100 flex-1 w-full overflow-hidden">
-                  <LinkIcon className="w-4 h-4 text-gray-400 shrink-0" />
-                  <code className="text-xs text-gray-500 font-mono truncate">
-                    {typeof window !== 'undefined' ? `${window.location.origin}/audit-results?id=${auditId}` : ''}
-                  </code>
-                </div>
-                <button
-                  onClick={handleShare}
-                  className="whitespace-nowrap px-6 py-2 bg-gray-900 text-white rounded-lg text-sm font-bold hover:bg-black transition-all flex items-center gap-2 shadow-lg shadow-gray-900/10"
-                >
-                  {isCopied ? (
-                    <>
-                      <CheckCircle2 className="w-4 h-4 text-[#51bc8f]" />
-                      Copied!
-                    </>
-                  ) : (
-                    <>
-                      <Share2 className="w-4 h-4" />
-                      Copy Link
-                    </>
-                  )}
-                </button>
-              </div>
-              <p className="text-center text-[10px] text-gray-400 mt-3 font-bold uppercase tracking-widest">
-                Share this report publicly (Private info is masked)
-              </p>
-            </motion.section>
-          )}
+          {/* Sharing section removed as per request */}
 
           <section className="mb-24">
             <div className="flex items-center gap-4 mb-8">
