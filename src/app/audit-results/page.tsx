@@ -199,6 +199,14 @@ function AuditResultsContent() {
 
         <div className="flex items-center gap-4">
           <button
+            onClick={handleShare}
+            className="flex items-center gap-2 px-4 py-2 bg-white border border-gray-200 rounded-xl text-sm font-bold text-gray-700 hover:bg-gray-50 transition-all shadow-sm"
+          >
+            {isCopied ? <CheckCircle2 className="w-4 h-4 text-[#51bc8f]" /> : <LinkIcon className="w-4 h-4" />}
+            {isCopied ? 'Copied!' : 'Share'}
+          </button>
+
+          <button
             onClick={downloadPDF}
             disabled={isExporting}
             className="flex items-center gap-2 px-4 py-2 bg-white border border-gray-200 rounded-xl text-sm font-bold text-gray-700 hover:bg-gray-50 transition-all shadow-sm disabled:opacity-50"
@@ -210,8 +218,6 @@ function AuditResultsContent() {
             )}
             Download PDF
           </button>
-
-          {/* Sharing feature removed as per request */}
           <div className="flex items-center gap-2">
             <div className="relative w-8 h-8 rounded-lg flex items-center justify-center overflow-hidden">
               <Image
